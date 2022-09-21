@@ -13,7 +13,7 @@ const DesignerForm = styled.form`
 `;
 const Form = () => {
   const [name, setname] = useState("");
-  const [id, setid] = useState("");
+  const [studentId, setStudentId] = useState("");
   const genres = ["UX/UI", "ADVERTISEMENT", "IDENTITY", "CHARACTER", "GAME"];
   const [genre, setGenre] = useState("");
   const [workName, setWorkName] = useState("");
@@ -23,9 +23,9 @@ const Form = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     //파일 경로 참조 만들기
-    const profileRef = ref(storageService, `${id}/profile`);
-    const mainRef = ref(storageService, `${id}/main`);
-    const thumnailRef = ref(storageService, `${id}/thumnail`);
+    const profileRef = ref(storageService, `${studentId}/profile`);
+    const mainRef = ref(storageService, `${studentId}/main`);
+    const thumnailRef = ref(storageService, `${studentId}/thumnail`);
     //storage 참조 경로로 파일 업로드 하기
     const profileResponse = await uploadString(
       profileRef,
@@ -49,7 +49,7 @@ const Form = () => {
     //트윗 오브젝트
     const nameObj = {
       name: name,
-      id: id,
+      studentId: studentId,
       genre: genre,
       workName: workName,
       profileUrl,
@@ -60,7 +60,7 @@ const Form = () => {
     await addDoc(collection(dbService, "designers"), nameObj);
     //state 비워서 form 비우기
     setname("");
-    setid("");
+    setStudentId("");
     setGenre("");
     setWorkName("");
     setProfileAttachment("");
@@ -73,8 +73,8 @@ const Form = () => {
     } = event;
     if (name === "name") {
       setname(value);
-    } else if (name === "id") {
-      setid(value);
+    } else if (name === "studentId") {
+      setStudentId(value);
     } else if (name === "genre") {
       setGenre(value);
     } else if (name === "workName") {
@@ -113,8 +113,8 @@ const Form = () => {
         maxLength={20}
       />
       <input
-        name="id"
-        value={id}
+        name="studentId"
+        value={studentId}
         onChange={onChange}
         type="text"
         placeholder="학번"

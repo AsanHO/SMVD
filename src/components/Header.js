@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
-
 import { useState } from "react";
 const Wrapper = styled.div`
   position: fixed;
-  z-index: 99;
+  z-index: 1;
   box-sizing: border-box;
   display: flex;
   width: 100%;
