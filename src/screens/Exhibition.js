@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Detail from "../components/Detail";
 import { dbService } from "../firebase";
+import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 const Exhibition = () => {
   const [genre, setGenre] = useState("ALL");
@@ -47,8 +49,32 @@ const Exhibition = () => {
       setSelected(null);
     }
   }, [params.id]);
+
+  const Desktop = ({ children }) => {
+    const isDesktop = useMediaQuery({ minWidth: 992 });
+    return isDesktop ? children : null;
+  };
+  const Mobile = ({ children }) => {
+    const isMobile = useMediaQuery({ maxWidth: 991 });
+    return isMobile ? children : null;
+  };
+
+  const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  left: 50%;
+  right: 50%;
+  margin: 0 auto;
+`;
+
+const MWrapper = styled.div`
+  margin: 0 auto;
+`;
+
   return (
     <>
+    <Desktop>
+      <Wrapper>
       {selected && <Detail designer={selected} setSelected={setSelected} />}
       <div>
         <div>
@@ -79,6 +105,42 @@ const Exhibition = () => {
           </div>
         ))}
       </div>
+      </Wrapper>
+    </Desktop>
+    <Mobile>
+      <MWrapper>
+      {selected && <Detail designer={selected} setSelected={setSelected} />}
+      <div>
+        <div>
+          <p onClick={onClick} id="ALL">
+            ALL
+          </p>
+          <p onClick={onClick} id="UX/UI">
+            UX/UI
+          </p>
+          <p onClick={onClick} id="ADVERTISEMENT">
+            ADVERTISEMENT
+          </p>
+          <p onClick={onClick} id="IDENTITY">
+            IDENTITY
+          </p>
+          <p onClick={onClick} id="CHARACTER">
+            CHARACTER
+          </p>
+          <p onClick={onClick} id="GAME">
+            GAME
+          </p>
+        </div>
+        {designers.map((designer) => (
+          <div key={designer.id} onClick={() => onClickThumnail(designer)}>
+            <img src={designer.thumnailUrl} height="300px" alt="" />
+            <p>{designer.workName}</p>
+            <p>{designer.genre}</p>
+          </div>
+        ))}
+      </div>
+      </MWrapper>
+    </Mobile>
     </>
   );
 };
