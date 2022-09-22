@@ -1,13 +1,14 @@
 import { collection, getDocs, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useMatch, useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
 import Detail from "../components/Detail";
 import { dbService } from "../firebase";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
 const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
   left: 50%;
   right: 50%;
   margin: 0 auto;
@@ -51,10 +52,7 @@ const Mobile = ({ children }) => {
   return isMobile ? children : null;
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
-`;
+
 const Designer = () => {
   const [designers, setDesigners] = useState([]);
   const [selected, setSelected] = useState(null);
