@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   left: 50%;
   right: 50%;
   margin: 0 auto;
+  justify-content: center;
 `;
 
 const MWrapper = styled.div`
@@ -52,11 +53,11 @@ const Mobile = ({ children }) => {
   return isMobile ? children : null;
 };
 
-
 const Designer = () => {
   const [designers, setDesigners] = useState([]);
   const [selected, setSelected] = useState(null);
   const getDesigners = async () => {
+    setDesigners([]);
     const q = query(collection(dbService, "designers"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -84,46 +85,42 @@ const Designer = () => {
     }
   }, [params.id]);
   return (
-  <>
-    <Desktop>
-    {selected && <Detail designer={selected} setSelected={setSelected} />}
-      <Wrapper>
-      {designers.map((designer) => (
-          <div key={designer.id} onClick={() => onClick(designer)}>
-            <img src={designer.profileUrl} alt="" />
-            <span>{designer.name}</span>
-          </div>
-        ))}
-        <Profiles>
-          {designers.map((designer) => (
-            <Profile key={designer.id}>
-              <img style={{ width: "140px", height: "140px" }} src={designer.profileUrl} alt="" />
-              <span>{designer.name}</span>
-            </Profile>
-          ))}
-        </Profiles>
-      </Wrapper>
-    </Desktop>
-    <Mobile>
-    {selected && <Detail designer={selected} setSelected={setSelected} />}
-      <MWrapper>
-      {designers.map((designer) => (
-          <div key={designer.id} onClick={() => onClick(designer)}>
-            <img src={designer.profileUrl} alt="" />
-            <span>{designer.name}</span>
-          </div>
-        ))}
-        <MProfiles>
-          {designers.map((designer) => (
-            <MProfile key={designer.id}>
-              <img style={{ width: "140px", height: "140px" }} src={designer.profileUrl} alt="" />
-              <span>{designer.name}</span>
-            </MProfile>
-          ))}
-        </MProfiles>
-      </MWrapper>
-    </Mobile>
-  </>
+    <>
+      <Desktop>
+        {selected && <Detail designer={selected} setSelected={setSelected} />}
+        <Wrapper>
+          <Profiles>
+            {designers.map((designer) => (
+              <Profile key={designer.id} onClick={() => onClick(designer)}>
+                <img
+                  style={{ width: "140px", height: "140px" }}
+                  src={designer.profileUrl}
+                  alt=""
+                />
+                <span>{designer.name}</span>
+              </Profile>
+            ))}
+          </Profiles>
+        </Wrapper>
+      </Desktop>
+      <Mobile>
+        {selected && <Detail designer={selected} setSelected={setSelected} />}
+        <MWrapper>
+          <MProfiles>
+            {designers.map((designer) => (
+              <MProfile key={designer.id} onClick={() => onClick(designer)}>
+                <img
+                  style={{ width: "140px", height: "140px" }}
+                  src={designer.profileUrl}
+                  alt=""
+                />
+                <span>{designer.name}</span>
+              </MProfile>
+            ))}
+          </MProfiles>
+        </MWrapper>
+      </Mobile>
+    </>
   );
 };
 export default Designer;
