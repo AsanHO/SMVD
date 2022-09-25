@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   left: 50%;
   right: 50%;
   margin: 0 auto;
+  justify-content: center;
 `;
 
 const MWrapper = styled.div`
@@ -52,11 +53,11 @@ const Mobile = ({ children }) => {
   return isMobile ? children : null;
 };
 
-
 const Designer = () => {
   const [designers, setDesigners] = useState([]);
   const [selected, setSelected] = useState(null);
   const getDesigners = async () => {
+    setDesigners([]);
     const q = query(collection(dbService, "designers"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
