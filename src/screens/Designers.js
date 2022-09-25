@@ -85,42 +85,34 @@ const Designer = () => {
     }
   }, [params.id]);
   return (
-    <>
-      <Desktop>
-        {selected && <Detail designer={selected} setSelected={setSelected} />}
-        <Wrapper>
-          <Profiles>
-            {designers.map((designer) => (
-              <Profile key={designer.id} onClick={() => onClick(designer)}>
-                <img
-                  style={{ width: "140px", height: "140px" }}
-                  src={designer.profileUrl}
-                  alt=""
-                />
-                <span>{designer.name}</span>
-              </Profile>
-            ))}
-          </Profiles>
-        </Wrapper>
-      </Desktop>
-      <Mobile>
-        {selected && <Detail designer={selected} setSelected={setSelected} />}
-        <MWrapper>
-          <MProfiles>
-            {designers.map((designer) => (
-              <MProfile key={designer.id} onClick={() => onClick(designer)}>
-                <img
-                  style={{ width: "140px", height: "140px" }}
-                  src={designer.profileUrl}
-                  alt=""
-                />
-                <span>{designer.name}</span>
-              </MProfile>
-            ))}
-          </MProfiles>
-        </MWrapper>
-      </Mobile>
-    </>
+  <>
+    <Desktop>
+    {selected && <Detail designer={selected} setSelected={setSelected} />}
+      <Wrapper>
+        <Profiles>
+          {designers.map((designer) => (
+            <Profile key={designer.id} onClick={() => onClick(designer)}>
+              <img style={{ width: "140px", height: "140px" }} src={designer.profileUrl} alt="" />
+              <span>{designer.name}</span>
+            </Profile>
+          ))}
+        </Profiles>
+      </Wrapper>
+    </Desktop>
+    <Mobile>
+    {selected && <Detail designer={selected} setSelected={setSelected} />}
+      <MWrapper>
+        <MProfiles>
+          {designers.map((designer) => (
+            <MProfile key={designer.id} onClick={() => onClick(designer)}>
+              <img style={{ width: "140px", height: "140px" }} src={designer.profileUrl} alt="" />
+              <span>{designer.name}</span>
+            </MProfile>
+          ))}
+        </MProfiles>
+      </MWrapper>
+    </Mobile>
+  </>
   );
 };
 export default Designer;

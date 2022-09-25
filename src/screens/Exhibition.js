@@ -60,6 +60,7 @@ const Exhibition = () => {
   };
 
   const Wrapper = styled.div`
+  justify-content: center;
   display: flex;
   width: 100%;
   left: 50%;
@@ -68,50 +69,75 @@ const Exhibition = () => {
 `;
 
 const MWrapper = styled.div`
+  justify-content: center;
   margin: 0 auto;
+`;
+
+const Bar = styled.div`
+  display: flex;
+`
+
+const Thumnail = styled.div`
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const Thumnails = styled.div`
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 250px 250px 250px 250px;
+`;
+
+const MThumnail = styled.div`
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const MThumnails = styled.div`
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 250px 250px;
 `;
 
   return (
     <>
     <Desktop>
-      <Wrapper>
       {selected && <Detail designer={selected} setSelected={setSelected} />}
-      <div>
-        <div>
-          <p onClick={onClick} id="ALL">
-            ALL
-          </p>
-          <p onClick={onClick} id="UX/UI">
-            UX/UI
-          </p>
-          <p onClick={onClick} id="ADVERTISEMENT">
-            ADVERTISEMENT
-          </p>
-          <p onClick={onClick} id="IDENTITY">
-            IDENTITY
-          </p>
-          <p onClick={onClick} id="CHARACTER">
-            CHARACTER
-          </p>
-          <p onClick={onClick} id="GAME">
-            GAME
-          </p>
-        </div>
+      <Bar>
+        <p onClick={onClick} id="ALL">
+          ALL
+        </p>
+        <p onClick={onClick} id="UX/UI">
+          UX/UI
+        </p>
+        <p onClick={onClick} id="ADVERTISEMENT">
+          ADVERTISEMENT
+        </p>
+        <p onClick={onClick} id="IDENTITY">
+          IDENTITY
+        </p>
+        <p onClick={onClick} id="CHARACTER">
+          CHARACTER
+        </p>
+        <p onClick={onClick} id="GAME">
+          GAME
+        </p>
+      </Bar>
+      <Wrapper>
+        <Thumnails>
         {designers.map((designer) => (
-          <div key={designer.id} onClick={() => onClickThumnail(designer)}>
-            <img src={designer.thumnailUrl} height="300px" alt="" />
+          <Thumnail key={designer.id} onClick={() => onClickThumnail(designer)}>
+            <img src={designer.thumnailUrl} height="250px" alt="" />
             <p>{designer.workName}</p>
             <p>{designer.genre}</p>
-          </div>
+          </Thumnail>
         ))}
-      </div>
+        </Thumnails>
       </Wrapper>
     </Desktop>
     <Mobile>
-      <MWrapper>
       {selected && <Detail designer={selected} setSelected={setSelected} />}
-      <div>
-        <div>
+        <Bar>
           <p onClick={onClick} id="ALL">
             ALL
           </p>
@@ -130,15 +156,17 @@ const MWrapper = styled.div`
           <p onClick={onClick} id="GAME">
             GAME
           </p>
-        </div>
+        </Bar>
+      <MWrapper>
+        <MThumnails>
         {designers.map((designer) => (
-          <div key={designer.id} onClick={() => onClickThumnail(designer)}>
-            <img src={designer.thumnailUrl} height="300px" alt="" />
+          <MThumnail key={designer.id} onClick={() => onClickThumnail(designer)}>
+            <img src={designer.thumnailUrl} height="250px" alt="" />
             <p>{designer.workName}</p>
             <p>{designer.genre}</p>
-          </div>
+          </MThumnail>
         ))}
-      </div>
+        </MThumnails>
       </MWrapper>
     </Mobile>
     </>
