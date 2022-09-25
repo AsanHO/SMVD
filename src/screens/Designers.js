@@ -88,15 +88,9 @@ const Designer = () => {
     <Desktop>
     {selected && <Detail designer={selected} setSelected={setSelected} />}
       <Wrapper>
-      {designers.map((designer) => (
-          <div key={designer.id} onClick={() => onClick(designer)}>
-            <img src={designer.profileUrl} alt="" />
-            <span>{designer.name}</span>
-          </div>
-        ))}
         <Profiles>
           {designers.map((designer) => (
-            <Profile key={designer.id}>
+            <Profile key={designer.id} onClick={() => onClick(designer)}>
               <img style={{ width: "140px", height: "140px" }} src={designer.profileUrl} alt="" />
               <span>{designer.name}</span>
             </Profile>
@@ -107,15 +101,9 @@ const Designer = () => {
     <Mobile>
     {selected && <Detail designer={selected} setSelected={setSelected} />}
       <MWrapper>
-      {designers.map((designer) => (
-          <div key={designer.id} onClick={() => onClick(designer)}>
-            <img src={designer.profileUrl} alt="" />
-            <span>{designer.name}</span>
-          </div>
-        ))}
         <MProfiles>
           {designers.map((designer) => (
-            <MProfile key={designer.id}>
+            <MProfile key={designer.id} onClick={() => onClick(designer)}>
               <img style={{ width: "140px", height: "140px" }} src={designer.profileUrl} alt="" />
               <span>{designer.name}</span>
             </MProfile>
