@@ -5,6 +5,7 @@ import Detail from "../components/Detail";
 import { dbService } from "../firebase";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const MWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const Profile = styled.div`
+const Profile = styled(motion.div)`
   margin: 0 auto;
   margin-right: 48px;
   width: 136px;
@@ -56,6 +57,7 @@ const Mobile = ({ children }) => {
 const Designer = () => {
   const [designers, setDesigners] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [layOutId, setLayOutId] = useState(null);
   const getDesigners = async () => {
     setDesigners([]);
     const q = query(collection(dbService, "designers"));
@@ -74,6 +76,7 @@ const Designer = () => {
   console.log(designers);
   const navigate = useNavigate();
   const onClick = (designer) => {
+    setLayOutId(designer.id);
     setSelected(designer);
     navigate(`/designer/${designer.id}`);
   };
@@ -87,17 +90,35 @@ const Designer = () => {
   return (
     <>
       <Desktop>
-        {selected && <Detail designer={selected} setSelected={setSelected} />}
+        {selected && (
+          <AnimatePresence>
+            <motion.div>
+              <Detail
+                designer={selected}
+                setSelected={setSelected}
+                layoutId={layOutId}
+              />
+            </motion.div>
+          </AnimatePresence>
+        )}
         <Wrapper>
           <Profiles>
             {designers.map((designer) => (
-              <Profile key={designer.id} onClick={() => onClick(designer)}>
-                <img
-                  style={{ width: "140px", height: "140px" }}
+              <Profile
+                key={designer.id}
+                onClick={() => onClick(designer)}
+                layoutId={designer.id}
+              >
+                <motion.img
+                  style={{
+                    width: "140px",
+                    height: "140px",
+                    borderRadius: "15px",
+                  }}
                   src={designer.profileUrl}
                   alt=""
                 />
-                <span>{designer.name}</span>
+                <motion.span>{designer.name}</motion.span>
               </Profile>
             ))}
           </Profiles>
