@@ -3,16 +3,14 @@ import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useState } from "react";
 import styled from "styled-components";
 import Form from "../components/Form";
-import { app } from "../firebase";
 
 const Login = styled.div`
   width: 100%;
 `;
-const Admin = () => {
+const Admin = ({ isLoggedIn, setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const [error, setError] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const auth = getAuth();
   const onSubmit = async (e) => {
     e.preventDefault();

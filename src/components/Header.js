@@ -58,7 +58,7 @@ const Burger = styled.div`
 const MMenu = styled.span`
   color: white;
 `;
-const Header = () => {
+const Header = ({ isLoggedIn }) => {
   const [isburger, setIsBurger] = useState(false);
   const toggleBurger = () => setIsBurger(!isburger);
   return (
@@ -69,6 +69,7 @@ const Header = () => {
             <Logo src="logo.png" />
           </Link>
           <Menus>
+            {isLoggedIn && <span>logout</span>}
             <Link to="/about1">
               <Menu>ABOUT</Menu>
             </Link>
