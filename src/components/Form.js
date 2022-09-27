@@ -15,8 +15,10 @@ const Form = () => {
   const [name, setname] = useState("");
   const [studentId, setStudentId] = useState("");
   const genres = ["UX/UI", "ADVERTISEMENT", "IDENTITY", "CHARACTER", "GAME"];
-  const [genre, setGenre] = useState("");
+  const [genre, setGenre] = useState("UX/UI");
   const [workName, setWorkName] = useState("");
+  const [email, setEmail] = useState("");
+  const [utubeLink, setUtubeLink] = useState("");
   const [profileAttachment, setProfileAttachment] = useState("");
   const [mainAttachment, setMainAttachment] = useState("");
   const [thumnailAttachment, setThumnailAttachment] = useState("");
@@ -46,12 +48,18 @@ const Form = () => {
     const profileUrl = await getDownloadURL(profileResponse.ref);
     const mainUrl = await getDownloadURL(mainResponse.ref);
     const thumnailUrl = await getDownloadURL(thumnailResponse.ref);
+    //유튜브 비디오id 추출
+    let videoId = utubeLink.split("?v=");
+    videoId = videoId[1].split("&");
+    videoId = videoId[0];
     //트윗 오브젝트
     const nameObj = {
       name: name,
       studentId: studentId,
       genre: genre,
       workName: workName,
+      email: email,
+      utubeVideoId: videoId,
       profileUrl,
       mainUrl,
       thumnailUrl,
@@ -63,6 +71,8 @@ const Form = () => {
     setStudentId("");
     setGenre("");
     setWorkName("");
+    setEmail("");
+    setUtubeLink("");
     setProfileAttachment("");
     setMainAttachment("");
     setThumnailAttachment("");
@@ -79,6 +89,10 @@ const Form = () => {
       setGenre(value);
     } else if (name === "workName") {
       setWorkName(value);
+    } else if (name === "email") {
+      setEmail(value);
+    } else if (name === "utubeLink") {
+      setUtubeLink(value);
     }
   };
   const onFileChange = (event) => {
@@ -105,6 +119,7 @@ const Form = () => {
   return (
     <DesignerForm onSubmit={onSubmit}>
       <input
+        required
         name="name"
         value={name}
         onChange={onChange}
@@ -113,6 +128,7 @@ const Form = () => {
         maxLength={20}
       />
       <input
+        required
         name="studentId"
         value={studentId}
         onChange={onChange}
@@ -120,7 +136,9 @@ const Form = () => {
         placeholder="학번"
         maxLength={20}
       />
+
       <input
+        required
         name="workName"
         value={workName}
         onChange={onChange}
@@ -128,7 +146,23 @@ const Form = () => {
         placeholder="작품명"
         maxLength={20}
       />
-      <select name="genre" onChange={onChange} value={genre}>
+      <input
+        required
+        name="email"
+        value={email}
+        onChange={onChange}
+        type="email"
+        placeholder="이메일"
+      />
+      <input
+        required
+        name="utubeLink"
+        value={utubeLink}
+        onChange={onChange}
+        type="url"
+        placeholder="유튜브 링크(생략가능)"
+      />
+      <select required name="genre" onChange={onChange} value={genre}>
         {genres.map((item) => (
           <option value={item} key={item}>
             {item}
@@ -143,6 +177,7 @@ const Form = () => {
           <p>학생사진</p>
         </label>
         <input
+          required
           name="profile"
           id="profile-file"
           type="file"
@@ -168,6 +203,7 @@ const Form = () => {
           <p>메인이미지</p>
         </label>
         <input
+          required
           name="main"
           id="main-file"
           type="file"
@@ -193,6 +229,7 @@ const Form = () => {
           <p>썸네일이미지</p>
         </label>
         <input
+          required
           name="thumnail"
           id="thumnail-file"
           type="file"

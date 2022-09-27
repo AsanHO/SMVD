@@ -1,6 +1,6 @@
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { useMatch, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Detail from "../components/Detail";
 import { dbService } from "../firebase";
 import styled from "styled-components";
@@ -60,7 +60,10 @@ const Designer = () => {
   const [layOutId, setLayOutId] = useState(null);
   const getDesigners = async () => {
     setDesigners([]);
-    const q = query(collection(dbService, "designers"));
+    const q = query(
+      collection(dbService, "designers"),
+      orderBy("name", "desc")
+    );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       const newObj = {

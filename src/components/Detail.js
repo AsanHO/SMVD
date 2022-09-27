@@ -23,7 +23,6 @@ const Wrapper = styled(motion.div)`
 const GoBack = styled.div`
   cursor: pointer;
   position: absolute;
-
   right: 6%;
   width: 50px;
   height: 50px;
@@ -47,6 +46,17 @@ const Detail = ({ designer, setSelected, layoutId }) => {
     <Overlay>
       <GoBack onClick={goBack}>X</GoBack>
       <Wrapper layoutId={layoutId}>
+        {designer.utubeVideoId && (
+          <iframe
+            id="ytplayer"
+            type="text/html"
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${designer.utubeVideoId}`}
+            frameborder="0"
+            title="utube"
+          />
+        )}
         <iframe
           id="ytplayer"
           type="text/html"
