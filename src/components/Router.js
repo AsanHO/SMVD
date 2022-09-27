@@ -17,7 +17,7 @@ const AppRouter = ({ isLoggedIn, setIsLoggedIn }) => {
   console.log(isLoggedIn);
   return (
     <Router>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Wrapper>
         <Routes>
           <Route path="/about1" element={<About1 />} />

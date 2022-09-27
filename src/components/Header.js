@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { useState } from "react";
+import { getAuth, signOut } from "firebase/auth";
 const Wrapper = styled.div`
   position: fixed;
   z-index: 1;
@@ -58,9 +59,15 @@ const Burger = styled.div`
 const MMenu = styled.span`
   color: white;
 `;
-const Header = ({ isLoggedIn }) => {
+const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const [isburger, setIsBurger] = useState(false);
   const toggleBurger = () => setIsBurger(!isburger);
+  const onLogout = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      setIsLoggedIn(false);
+    });
+  };
   return (
     <>
       <Desktop>
@@ -69,7 +76,7 @@ const Header = ({ isLoggedIn }) => {
             <Logo src="logo.png" />
           </Link>
           <Menus>
-            {isLoggedIn && <span>logout</span>}
+            {isLoggedIn && <span onClick={onLogout}>Logout</span>}
             <Link to="/about1">
               <Menu>ABOUT</Menu>
             </Link>
