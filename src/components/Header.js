@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { useState, useEffect, useRef } from "react";
 import { getAuth, signOut } from "firebase/auth";
+
 const Wrapper = styled.div`
+  background-color: white;
   position: fixed;
   z-index: 1;
   box-sizing: border-box;
@@ -40,6 +42,7 @@ const Mobile = ({ children }) => {
   return isMobile ? children : null;
 };
 const MWrapper = styled.div`
+  background-color: white;
   position: fixed;
   z-index: 1;
   box-sizing: border-box;
