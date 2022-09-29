@@ -84,7 +84,7 @@ const Bar = styled.div`
 `
 
 const Opt = styled.div`
-  width: 16%;
+  width: auto;
   margin-right: 15px;
   margin-bottom: 10px;
   position: relative;
