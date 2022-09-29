@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+<<<<<<< HEAD
 import { useState, useEffect, useRef } from "react";
+=======
+import { useState } from "react";
+import { getAuth, signOut } from "firebase/auth";
+>>>>>>> logic
 const Wrapper = styled.div`
   position: fixed;
   z-index: 1;
@@ -70,9 +75,10 @@ const Burger = styled.div`
 const MMenu = styled.span`
   color: white;
 `;
-const Header = () => {
+const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const [isburger, setIsBurger] = useState(false);
   const toggleBurger = () => setIsBurger(!isburger);
+<<<<<<< HEAD
   const [hide, setHide] = useState(false);
   const [pageY, setPageY] = useState(0);
   const documentRef = useRef(document);
@@ -103,6 +109,14 @@ const Header = () => {
       return () => documentRef.current.removeEventListener('scroll', throttleScroll);
   },[pageY]);
 
+=======
+  const onLogout = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      setIsLoggedIn(false);
+    });
+  };
+>>>>>>> logic
   return (
     <>
       <Desktop>
@@ -111,11 +125,12 @@ const Header = () => {
             <Logo src="logo.png" />
           </Link>
           <Menus>
+            {isLoggedIn && <span onClick={onLogout}>Logout</span>}
             <Link to="/about1">
               <Menu>ABOUT</Menu>
             </Link>
             <Link to="/designer">
-              <Menu>DESIGNER</Menu>
+              <Menu>DESIGNERS</Menu>
             </Link>
             <Link to="/exhibition">
               <Menu>EXHIBITION</Menu>

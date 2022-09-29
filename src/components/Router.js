@@ -13,20 +13,29 @@ const Wrapper = styled.div`
   width: 100%;
   padding-top: 8em;
 `;
-const AppRouter = () => {
+const AppRouter = ({ isLoggedIn, setIsLoggedIn }) => {
+  console.log(isLoggedIn);
   return (
     <Router>
-      <Header />
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Wrapper>
         <Routes>
           <Route path="/about1" element={<About1 />} />
           <Route path="/about2" element={<About2 />} />
           <Route path="/about3" element={<About3 />} />
-          <Route path={"/designer"} element={<Designers />} />
-          <Route path={"/designer/:id"} element={<Designers />} />
+          <Route path="/designer" element={<Designers />} />
+          <Route
+            path="/designer/:id"
+            element={<Designers isLoggedIn={isLoggedIn} />}
+          />
           <Route path="/exhibition" element={<Exhibition />} />
-          <Route path={"/exhibition/:id"} element={<Exhibition />} />
-          <Route path="/Admin" element={<Admin />} />
+          <Route path="/exhibition/:id" element={<Exhibition />} />
+          <Route
+            path="/Admin"
+            element={
+              <Admin isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            }
+          />
           <Route path="/" element={<Home />} />
         </Routes>
       </Wrapper>

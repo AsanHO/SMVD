@@ -1,4 +1,5 @@
-import { useMatch, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Overlay = styled.div`
@@ -13,16 +14,16 @@ const Overlay = styled.div`
   z-index: 3;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   width: 80vw;
-
+  background-color: black;
   overflow-y: auto;
   border-radius: 15px;
 `;
 const GoBack = styled.div`
-  position: fixed;
-  top: 5%;
-  right: 14%;
+  cursor: pointer;
+  position: absolute;
+  right: 6%;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -34,7 +35,7 @@ const GoBack = styled.div`
   font-weight: 800;
 `;
 
-const Detail = ({ designer, setSelected }) => {
+const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   console.log(designer);
   const navigate = useNavigate();
   const goBack = () => {
@@ -42,14 +43,37 @@ const Detail = ({ designer, setSelected }) => {
     navigate(-1);
   };
   return (
-    <>
-      <Overlay>
-        <GoBack onClick={goBack}>X</GoBack>
-        <Wrapper>
-          <img src={designer.mainUrl} style={{ width: "100%" }} alt="" />
-        </Wrapper>
-      </Overlay>
-    </>
+    <Overlay>
+      <GoBack onClick={goBack}>X</GoBack>
+      {isLoggedIn && (
+        <GoBack style={{ top: "15%" }} onClick={goBack}>
+          🖊
+        </GoBack>
+      )}
+      <Wrapper layoutId={layoutId}>
+        {designer.utubeVideoId && (
+          <iframe
+            id="ytplayer"
+            type="text/html"
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${designer.utubeVideoId}`}
+            frameborder="0"
+            title="utube"
+          />
+        )}
+        <iframe
+          id="ytplayer"
+          type="text/html"
+          width="100%"
+          height="100%"
+          src="https://www.youtube.com/embed/7v6NDhHlf0A"
+          frameborder="0"
+          title="utube"
+        />
+        <img src={designer.mainUrl} style={{ width: "100%" }} alt="" />
+      </Wrapper>
+    </Overlay>
   );
 };
 
