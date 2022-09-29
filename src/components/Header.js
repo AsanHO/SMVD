@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 const Wrapper = styled.div`
   position: fixed;
   z-index: 1;
@@ -12,8 +12,13 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 2em;
   height: 8em;
+  &.hide{
+    transform: translateY(-8em);
+  }
 `;
-const Logo = styled.img``;
+// 로고 이미지 크기 반응형?
+const Logo = styled.img`
+  opacity: 100%;`;
 const Menus = styled.div`
   display: flex;
   width: 20%;
@@ -22,6 +27,7 @@ const Menus = styled.div`
 const Menu = styled.span`
   text-decoration: none;
   color: black;
+  opacity: 100%;
 `;
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -41,11 +47,17 @@ const MWrapper = styled.div`
   align-items: center;
   padding: 2em;
   height: 8em;
+  background-color: white;
+  &.hide{
+    transform: translateY(-8em);
+  }
 `;
+
+// max-width 정해주기..
 const Burger = styled.div`
   position: absolute;
   height: 100vh;
-  width: 100%;
+  width: 100%; 
   display: flex;
   flex-direction: column;
   transform: ${(props) =>
@@ -61,10 +73,40 @@ const MMenu = styled.span`
 const Header = () => {
   const [isburger, setIsBurger] = useState(false);
   const toggleBurger = () => setIsBurger(!isburger);
+  const [hide, setHide] = useState(false);
+  const [pageY, setPageY] = useState(0);
+  const documentRef = useRef(document);
+
+  const handleScroll = () => {
+      const { pageYOffset } = window;
+      const deltaY = pageYOffset - pageY;
+      const hide = pageYOffset !== 0 && deltaY >= 0;
+      setHide(hide);
+      setPageY(pageYOffset);
+  };
+
+  const throttle = function (callback, waitTime) {
+    let timerId = null;
+    return (e) => {
+        if (timerId) return;
+        timerId = setTimeout(() => {
+            callback.call(this, e);
+            timerId = null;
+        }, waitTime);
+    };
+};
+
+  const throttleScroll = throttle(handleScroll, 50);
+  
+  useEffect(()=>{
+      documentRef.current.addEventListener('scroll', throttleScroll);
+      return () => documentRef.current.removeEventListener('scroll', throttleScroll);
+  },[pageY]);
+
   return (
     <>
       <Desktop>
-        <Wrapper>
+        <Wrapper className={hide && 'hide'}>
           <Link to="/">
             <Logo src="logo.png" />
           </Link>
@@ -82,7 +124,7 @@ const Header = () => {
         </Wrapper>
       </Desktop>
       <Mobile>
-        <MWrapper>
+        <MWrapper className={hide && 'hide'}>
           <Link to="/">
             <Logo src="logo.png" />
           </Link>
