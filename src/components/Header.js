@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
-<<<<<<< HEAD
 import { useState, useEffect, useRef } from "react";
-=======
-import { useState } from "react";
 import { getAuth, signOut } from "firebase/auth";
->>>>>>> logic
+
 const Wrapper = styled.div`
+  background-color: white;
   position: fixed;
   z-index: 1;
   box-sizing: border-box;
@@ -43,6 +41,7 @@ const Mobile = ({ children }) => {
   return isMobile ? children : null;
 };
 const MWrapper = styled.div`
+  background-color: white;
   position: fixed;
   z-index: 1;
   box-sizing: border-box;
@@ -78,7 +77,6 @@ const MMenu = styled.span`
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const [isburger, setIsBurger] = useState(false);
   const toggleBurger = () => setIsBurger(!isburger);
-<<<<<<< HEAD
   const [hide, setHide] = useState(false);
   const [pageY, setPageY] = useState(0);
   const documentRef = useRef(document);
@@ -109,14 +107,12 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
       return () => documentRef.current.removeEventListener('scroll', throttleScroll);
   },[pageY]);
 
-=======
   const onLogout = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
       setIsLoggedIn(false);
     });
   };
->>>>>>> logic
   return (
     <>
       <Desktop>

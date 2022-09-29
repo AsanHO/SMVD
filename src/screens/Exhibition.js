@@ -77,6 +77,7 @@ const MWrapper = styled.div`
 const Bar = styled.div`
   width: 100%;
   display: flex;
+  justify-content: center;
   margin-bottom: 10px;
   margin-left: 10px;
   flex-wrap: wrap;
@@ -84,8 +85,11 @@ const Bar = styled.div`
 
 const Opt = styled.div`
   width: auto;
+  margin-right: 15px;
   margin-bottom: 10px;
   position: relative;
+  border: 1px solid lightgray;
+  border-radius: 25px;
   color: #5f6368;
   display: inline-block;
   padding: 6px 8px 6px 8px;
