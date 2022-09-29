@@ -35,6 +35,7 @@ const Exhibition = () => {
 
   const onClick = (event) => {
     setGenre(event.target.id);
+    // alert(event.target.id);
     console.log(genre);
   };
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Exhibition = () => {
       setSelected(null);
     }
   }, [params.id]);
-
+  
   const Desktop = ({ children }) => {
     const isDesktop = useMediaQuery({ minWidth: 992 });
     return isDesktop ? children : null;
@@ -74,7 +75,26 @@ const MWrapper = styled.div`
 `;
 
 const Bar = styled.div`
+  width: 100%;
   display: flex;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  flex-wrap: wrap;
+`
+
+const Opt = styled.div`
+  width: auto;
+  margin-bottom: 10px;
+  position: relative;
+  color: #5f6368;
+  display: inline-block;
+  padding: 6px 8px 6px 8px;
+  background-color: ${props=>props.inputcolor || 'white'};
+  &:hover {
+    transition: 0.3s;
+    background-color: black;
+    color: white;
+  }
 `
 
 const Thumnail = styled.div`
@@ -99,29 +119,92 @@ const MThumnails = styled.div`
   grid-template-columns: 250px 250px;
 `;
 
+const [allBtn, setAllBtn] =  useState('black');
+const [uxuiBtn, setUxuiBtn] =  useState(false);
+const [adBtn, setAdBtn] =  useState(false);
+const [idBtn, setIdBtn] =  useState(false);
+const [charBtn, setCharBtn] =  useState(false);
+const [gameBtn, setGameBtn] =  useState(false);
+
+useEffect(() => {
+  switch(genre){
+    case 'ALL':
+      setAllBtn('black')
+      setUxuiBtn(false)
+      setAdBtn(false)
+      setIdBtn(false)
+      setCharBtn(false)
+      setGameBtn(false)
+      break
+    case 'UX/UI':
+      setAllBtn(false)
+      setUxuiBtn('black')
+      setAdBtn(false)
+      setIdBtn(false)
+      setCharBtn(false)
+      setGameBtn(false)
+      break
+    case 'ADVERTISEMENT':
+      setAllBtn(false)
+      setUxuiBtn(false)
+      setAdBtn('black')
+      setIdBtn(false)
+      setCharBtn(false)
+      setGameBtn(false)
+      break
+    case 'IDENTITY':
+      setAllBtn(false)
+      setUxuiBtn(false)
+      setAdBtn(false)
+      setIdBtn('black')
+      setCharBtn(false)
+      setGameBtn(false)
+      break
+    case 'CHARACTER':
+      setAllBtn(false)
+      setUxuiBtn(false)
+      setAdBtn(false)
+      setIdBtn(false)
+      setCharBtn('black')
+      setGameBtn(false)
+      break
+    case 'GAME':
+      setAllBtn(false)
+      setUxuiBtn(false)
+      setAdBtn(false)
+      setIdBtn(false)
+      setCharBtn(false)
+      setGameBtn('black')
+      break
+    default:
+
+  }
+  console.log(allBtn);
+},[genre])
+
   return (
     <>
     <Desktop>
       {selected && <Detail designer={selected} setSelected={setSelected} />}
       <Bar>
-        <p onClick={onClick} id="ALL">
+        <Opt onClick={onClick} inputcolor={allBtn} id="ALL">
           ALL
-        </p>
-        <p onClick={onClick} id="UX/UI">
+        </Opt>
+        <Opt onClick={onClick} inputcolor={uxuiBtn} id="UX/UI">
           UX/UI
-        </p>
-        <p onClick={onClick} id="ADVERTISEMENT">
+        </Opt>
+        <Opt onClick={onClick} inputcolor={adBtn} id="ADVERTISEMENT">
           ADVERTISEMENT
-        </p>
-        <p onClick={onClick} id="IDENTITY">
+        </Opt>
+        <Opt onClick={onClick} inputcolor={idBtn} id="IDENTITY">
           IDENTITY
-        </p>
-        <p onClick={onClick} id="CHARACTER">
+        </Opt>
+        <Opt onClick={onClick} inputcolor={charBtn} id="CHARACTER">
           CHARACTER
-        </p>
-        <p onClick={onClick} id="GAME">
+        </Opt>
+        <Opt onClick={onClick} inputcolor={gameBtn} id="GAME">
           GAME
-        </p>
+        </Opt>
       </Bar>
       <Wrapper>
         <Thumnails>
@@ -138,24 +221,24 @@ const MThumnails = styled.div`
     <Mobile>
       {selected && <Detail designer={selected} setSelected={setSelected} />}
         <Bar>
-          <p onClick={onClick} id="ALL">
+          <Opt onClick={onClick} inputcolor={allBtn} id="ALL">
             ALL
-          </p>
-          <p onClick={onClick} id="UX/UI">
+          </Opt>
+          <Opt onClick={onClick} inputcolor={uxuiBtn} id="UX/UI">
             UX/UI
-          </p>
-          <p onClick={onClick} id="ADVERTISEMENT">
+          </Opt>
+          <Opt onClick={onClick} inputcolor={adBtn} id="ADVERTISEMENT">
             ADVERTISEMENT
-          </p>
-          <p onClick={onClick} id="IDENTITY">
+          </Opt>
+          <Opt onClick={onClick} inputcolor={idBtn} id="IDENTITY">
             IDENTITY
-          </p>
-          <p onClick={onClick} id="CHARACTER">
+          </Opt>
+          <Opt onClick={onClick} inputcolor={charBtn} id="CHARACTER">
             CHARACTER
-          </p>
-          <p onClick={onClick} id="GAME">
+          </Opt>
+          <Opt onClick={onClick} inputcolor={gameBtn} id="GAME">
             GAME
-          </p>
+          </Opt>
         </Bar>
       <MWrapper>
         <MThumnails>
