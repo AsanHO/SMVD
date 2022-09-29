@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { useState, useEffect, useRef } from "react";
+
 const Wrapper = styled.div`
   position: fixed;
   z-index: 1;
@@ -19,6 +20,7 @@ const Wrapper = styled.div`
 // 로고 이미지 크기 반응형?
 const Logo = styled.img`
   opacity: 100%;`;
+
 const Menus = styled.div`
   display: flex;
   width: 20%;

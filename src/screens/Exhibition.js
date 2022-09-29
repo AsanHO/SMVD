@@ -75,7 +75,7 @@ const MWrapper = styled.div`
 `;
 
 const Bar = styled.div`
-  width: 100%;
+  width: 100vw;
   display: flex;
   margin-bottom: 10px;
   margin-left: 10px;
@@ -83,11 +83,12 @@ const Bar = styled.div`
 `
 
 const Opt = styled.div`
-  width: auto;
+  width: 16%;
   margin-bottom: 10px;
   position: relative;
   color: #5f6368;
   display: inline-block;
+  text-align: center;
   padding: 6px 8px 6px 8px;
   background-color: ${props=>props.inputcolor || 'white'};
   &:hover {
