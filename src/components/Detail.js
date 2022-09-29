@@ -35,7 +35,7 @@ const GoBack = styled.div`
   font-weight: 800;
 `;
 
-const Detail = ({ designer, setSelected, layoutId }) => {
+const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   console.log(designer);
   const navigate = useNavigate();
   const goBack = () => {
@@ -45,6 +45,11 @@ const Detail = ({ designer, setSelected, layoutId }) => {
   return (
     <Overlay>
       <GoBack onClick={goBack}>X</GoBack>
+      {isLoggedIn && (
+        <GoBack style={{ top: "15%" }} onClick={goBack}>
+          🖊
+        </GoBack>
+      )}
       <Wrapper layoutId={layoutId}>
         {designer.utubeVideoId && (
           <iframe

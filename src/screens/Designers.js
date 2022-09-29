@@ -54,7 +54,7 @@ const Mobile = ({ children }) => {
   return isMobile ? children : null;
 };
 
-const Designer = () => {
+const Designer = ({ isLoggedIn }) => {
   const [designers, setDesigners] = useState([]);
   const [selected, setSelected] = useState(null);
   const [layOutId, setLayOutId] = useState(null);
@@ -100,6 +100,7 @@ const Designer = () => {
                 designer={selected}
                 setSelected={setSelected}
                 layoutId={layOutId}
+                isLoggedIn={isLoggedIn}
               />
             </motion.div>
           </AnimatePresence>

@@ -81,7 +81,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
               <Menu>ABOUT</Menu>
             </Link>
             <Link to="/designer">
-              <Menu>DESIGNER</Menu>
+              <Menu>DESIGNERS</Menu>
             </Link>
             <Link to="/exhibition">
               <Menu>EXHIBITION</Menu>
