@@ -15,14 +15,14 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 2em;
   height: 8em;
-  &.hide{
+  &.hide {
     transform: translateY(-8em);
   }
 `;
 // 로고 이미지 크기 반응형?
 const Logo = styled.img`
-  opacity: 100%;`;
-
+  opacity: 100%
+`;
 const Menus = styled.div`
   display: flex;
   width: 20%;
@@ -53,7 +53,7 @@ const MWrapper = styled.div`
   padding: 2em;
   height: 8em;
   background-color: white;
-  &.hide{
+  &.hide {
     transform: translateY(-8em);
   }
 `;
@@ -62,7 +62,7 @@ const MWrapper = styled.div`
 const Burger = styled.div`
   position: absolute;
   height: 100vh;
-  width: 100%; 
+  width: 100%;
   display: flex;
   flex-direction: column;
   transform: ${(props) =>
@@ -81,32 +81,30 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const [hide, setHide] = useState(false);
   const [pageY, setPageY] = useState(0);
   const documentRef = useRef(document);
-
   const handleScroll = () => {
-      const { pageYOffset } = window;
-      const deltaY = pageYOffset - pageY;
-      const hide = pageYOffset !== 0 && deltaY >= 0;
-      setHide(hide);
-      setPageY(pageYOffset);
+    const { pageYOffset } = window;
+    const deltaY = pageYOffset - pageY;
+    const hide = pageYOffset !== 0 && deltaY >= 0;
+    setHide(hide);
+    setPageY(pageYOffset);
   };
-
   const throttle = function (callback, waitTime) {
     let timerId = null;
     return (e) => {
-        if (timerId) return;
-        timerId = setTimeout(() => {
-            callback.call(this, e);
-            timerId = null;
-        }, waitTime);
+      if (timerId) return;
+      timerId = setTimeout(() => {
+        callback.call(this, e);
+        timerId = null;
+      }, waitTime);
     };
-};
-
+  };
   const throttleScroll = throttle(handleScroll, 50);
-  
-  useEffect(()=>{
-      documentRef.current.addEventListener('scroll', throttleScroll);
-      return () => documentRef.current.removeEventListener('scroll', throttleScroll);
-  },[pageY]);
+
+  useEffect(() => {
+    documentRef.current.addEventListener("scroll", throttleScroll);
+    return () =>
+      documentRef.current.removeEventListener("scroll", throttleScroll);
+  }, [pageY]);
 
   const onLogout = () => {
     const auth = getAuth();
@@ -114,10 +112,11 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
       setIsLoggedIn(false);
     });
   };
+
   return (
     <>
       <Desktop>
-        <Wrapper className={hide && 'hide'}>
+        <Wrapper className={hide && "hide"}>
           <Link to="/">
             <Logo src="logo.png" />
           </Link>
@@ -136,7 +135,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
         </Wrapper>
       </Desktop>
       <Mobile>
-        <MWrapper className={hide && 'hide'}>
+        <MWrapper className={hide && "hide"}>
           <Link to="/">
             <Logo src="logo.png" />
           </Link>
