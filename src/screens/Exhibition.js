@@ -60,6 +60,8 @@ const Exhibition = () => {
     return isMobile ? children : null;
   };
 
+  
+  
   const Wrapper = styled.div`
   justify-content: center;
   display: flex;
@@ -75,7 +77,7 @@ const MWrapper = styled.div`
 `;
 
 const Bar = styled.div`
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
@@ -92,6 +94,7 @@ const Opt = styled.div`
   border-radius: 25px;
   color: #5f6368;
   display: inline-block;
+  text-align: center;
   padding: 6px 8px 6px 8px;
   background-color: ${props=>props.inputcolor || 'white'};
   &:hover {

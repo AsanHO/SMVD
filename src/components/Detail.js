@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const Overlay = styled.div`
   position: absolute;
@@ -19,6 +20,17 @@ const Wrapper = styled(motion.div)`
   background-color: black;
   overflow-y: auto;
   border-radius: 15px;
+  overflow: overlay;
+  &::-webkit-scrollbar{
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: lightgray;
+    border-radius: 50px;
+  }
+  &::-webkit-scrollbar-track{
+    background:none;
+  }
 `;
 const GoBack = styled.div`
   cursor: pointer;
@@ -35,13 +47,20 @@ const GoBack = styled.div`
   font-weight: 800;
 `;
 
+
 const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   console.log(designer);
   const navigate = useNavigate();
   const goBack = () => {
     setSelected(null);
     navigate(-1);
+  
   };
+  useEffect(() => {
+    document.body.style= `overflow: hidden`;
+    return () => document.body.style = `overflow: auto`
+  }, [])
+  
   return (
     <Overlay>
       <GoBack onClick={goBack}>X</GoBack>
