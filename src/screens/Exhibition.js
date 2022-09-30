@@ -60,6 +60,8 @@ const Exhibition = () => {
     return isMobile ? children : null;
   };
 
+  
+  
   const Wrapper = styled.div`
   justify-content: center;
   display: flex;
