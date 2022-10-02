@@ -17,7 +17,7 @@ function App() {
       setIsLoggedIn(false);
     });
   };
-  setTimeout(onLogout, 5000);
+  setTimeout(onLogout, 1000 * 60 * 10); //10분지나면 로그아웃
   return <AppRouter isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />;
 }
 

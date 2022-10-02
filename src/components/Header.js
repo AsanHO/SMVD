@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 `;
 // 로고 이미지 크기 반응형?
 const Logo = styled.img`
-  opacity: 100%
+  opacity: 100%;
 `;
 const Menus = styled.div`
   display: flex;
