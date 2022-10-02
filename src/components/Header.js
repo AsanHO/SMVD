@@ -42,7 +42,6 @@ const Mobile = ({ children }) => {
   return isMobile ? children : null;
 };
 const MWrapper = styled.div`
-  background-color: white;
   position: fixed;
   z-index: 1;
   box-sizing: border-box;
@@ -50,9 +49,9 @@ const MWrapper = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 2em;
-  height: 8em;
-  background-color: white;
+  padding: 0 2em;
+  height: 10vh;
+  background-color: red;
   &.hide {
     transform: translateY(-8em);
   }
