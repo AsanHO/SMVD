@@ -11,7 +11,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 100%;
-  padding-top: 8em;
+  padding-top: 14vh;
 `;
 const AppRouter = ({ isLoggedIn, setIsLoggedIn }) => {
   console.log(isLoggedIn);

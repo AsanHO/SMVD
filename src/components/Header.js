@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2em;
-  height: 8em;
+  height: 14vh;
   &.hide {
     transform: translateY(-8em);
   }

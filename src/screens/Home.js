@@ -29,7 +29,7 @@ const Home = () => {
         modules={[Mousewheel]}
         className="mySwiper"
         style={{
-          height: "84vh",
+          height: "86vh",
 
           display: "flex",
           justifyContent: "center",
