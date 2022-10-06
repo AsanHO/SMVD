@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import AppRouter from "./Router";
 
 function App() {
@@ -12,6 +12,13 @@ function App() {
       }
     });
   }, [auth]);
+  const onLogout = () => {
+    signOut(auth).then(() => {
+      setIsLoggedIn(false);
+    });
+  };
+  setTimeout(onLogout, 1000 * 60 * 10); //10분지나면 로그아웃
+
   return <AppRouter isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />;
 }
 
