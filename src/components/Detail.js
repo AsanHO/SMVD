@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Overlay = styled.div`
   position: absolute;
@@ -47,6 +47,19 @@ const GoBack = styled.div`
   font-weight: 800;
 `;
 
+const modalEl = useRef();
+const [isOpen, setOpen] = useState(false);
+
+const handleClickOutside = ({ target }) => {
+  if (isOpen && !modalEl.current.contains(target)) setOpen(false);
+};
+
+useEffect(() => {
+  window.addEventListener("click", handleClickOutside);
+  return () => {
+    window.removeEventListener("click", handleClickOutside);
+  };
+}, []);
 
 const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   console.log(designer);
@@ -54,7 +67,6 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   const goBack = () => {
     setSelected(null);
     navigate(-1);
-  
   };
   useEffect(() => {
     document.body.style= `overflow: hidden`;
@@ -62,14 +74,14 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   }, [])
   
   return (
-    <Overlay>
+    <Overlay onClick={goBack}>
       <GoBack onClick={goBack}>X</GoBack>
       {isLoggedIn && (
         <GoBack style={{ top: "15%" }} onClick={goBack}>
           🖊
         </GoBack>
       )}
-      <Wrapper layoutId={layoutId}>
+      { isOpen && (<Wrapper layoutId={layoutId}>
         {designer.utubeVideoId && (
           <iframe
             id="ytplayer"
@@ -91,7 +103,7 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
           title="utube"
         />
         <img src={designer.mainUrl} style={{ width: "100%" }} alt="" />
-      </Wrapper>
+      </Wrapper>)}
     </Overlay>
   );
 };
