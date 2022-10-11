@@ -1,41 +1,117 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Detail from "../components/Detail";
 import { dbService } from "../firebase";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992 });
+  return isDesktop ? children : null;
+};
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 991 });
+  return isMobile ? children : null;
+};
+
+const Wrapper = styled.div`
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  left: 50%;
+  right: 50%;
+  margin: 0 auto;
+`;
+
+const MWrapper = styled.div`
+  justify-content: center;
+  margin: 0 auto;
+`;
+
+const Bar = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  flex-wrap: wrap;
+`;
+
+const Opt = styled.div`
+  width: auto;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  position: relative;
+  border: 1px solid lightgray;
+  border-radius: 25px;
+  color: #5f6368;
+  display: inline-block;
+  text-align: center;
+  padding: 6px 8px 6px 8px;
+  background-color: ${(props) => props.inputcolor || "white"};
+  &:hover {
+    transition: 0.3s;
+    background-color: black;
+    color: white;
+  }
+`;
+
+const Thumnail = styled.div`
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const Thumnails = styled.div`
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 250px 250px 250px 250px;
+`;
+
+const MThumnail = styled.div`
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const MThumnails = styled.div`
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 250px 250px;
+`;
 
 const Exhibition = () => {
   const [genre, setGenre] = useState("ALL");
   const [designers, setDesigners] = useState([]);
+  const [initDesigners, setInitDesigners] = useState([]);
   const [selected, setSelected] = useState(null);
   const getDesigners = async () => {
-    setDesigners([]); //변경전 초기화
+    setInitDesigners([]);
     const designRef = collection(dbService, "designers");
-    let q;
-    if (genre !== "ALL") {
-      q = query(designRef, where("genre", "==", genre));
-    } else {
-      q = query(designRef);
-    }
+    let q = query(designRef);
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       const newObj = {
         ...doc.data(),
         id: doc.id,
       };
-      setDesigners((cur) => [...cur, newObj]);
+      setInitDesigners((cur) => [...cur, newObj]);
     });
+
+    setDesigners(initDesigners);
   };
   useEffect(() => {
     getDesigners();
+  }, []);
+
+  useEffect(() => {
+    setDesigners(initDesigners);
+    if (genre !== "ALL") {
+      setDesigners((cur) => cur.filter((e) => e.genre === genre));
+    }
   }, [genre]);
   console.log(designers);
 
   const onClick = (event) => {
     setGenre(event.target.id);
-    // alert(event.target.id);
     console.log(genre);
   };
   const navigate = useNavigate();
@@ -50,79 +126,6 @@ const Exhibition = () => {
       setSelected(null);
     }
   }, [params.id]);
-
-  const Desktop = ({ children }) => {
-    const isDesktop = useMediaQuery({ minWidth: 992 });
-    return isDesktop ? children : null;
-  };
-  const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 991 });
-    return isMobile ? children : null;
-  };
-
-  const Wrapper = styled.div`
-    justify-content: center;
-    display: flex;
-    width: 100%;
-    left: 50%;
-    right: 50%;
-    margin: 0 auto;
-  `;
-
-  const MWrapper = styled.div`
-    justify-content: center;
-    margin: 0 auto;
-  `;
-
-  const Bar = styled.div`
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    flex-wrap: wrap;
-  `;
-
-  const Opt = styled.div`
-    width: auto;
-    margin-right: 15px;
-    margin-bottom: 10px;
-    position: relative;
-    border: 1px solid lightgray;
-    border-radius: 25px;
-    color: #5f6368;
-    display: inline-block;
-    text-align: center;
-    padding: 6px 8px 6px 8px;
-    background-color: ${(props) => props.inputcolor || "white"};
-    &:hover {
-      transition: 0.3s;
-      background-color: black;
-      color: white;
-    }
-  `;
-
-  const Thumnail = styled.div`
-    margin: 0 auto;
-    text-align: center;
-  `;
-
-  const Thumnails = styled.div`
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 250px 250px 250px 250px;
-  `;
-
-  const MThumnail = styled.div`
-    margin: 0 auto;
-    text-align: center;
-  `;
-
-  const MThumnails = styled.div`
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 250px 250px;
-  `;
 
   const [allBtn, setAllBtn] = useState("black");
   const [uxuiBtn, setUxuiBtn] = useState(false);
