@@ -95,24 +95,21 @@ const Exhibition = () => {
       };
       setInitDesigners((cur) => [...cur, newObj]);
     });
-
-    setDesigners(initDesigners);
   };
   useEffect(() => {
     getDesigners();
   }, []);
-
+  useEffect(() => {
+    setDesigners(initDesigners);
+  }, [initDesigners]);
   useEffect(() => {
     setDesigners(initDesigners);
     if (genre !== "ALL") {
       setDesigners((cur) => cur.filter((e) => e.genre === genre));
     }
   }, [genre]);
-  console.log(designers);
-
   const onClick = (event) => {
     setGenre(event.target.id);
-    console.log(genre);
   };
   const navigate = useNavigate();
   const onClickThumnail = (designer) => {
@@ -126,7 +123,6 @@ const Exhibition = () => {
       setSelected(null);
     }
   }, [params.id]);
-
   const [allBtn, setAllBtn] = useState("black");
   const [uxuiBtn, setUxuiBtn] = useState(false);
   const [adBtn, setAdBtn] = useState(false);
@@ -186,7 +182,6 @@ const Exhibition = () => {
         break;
       default:
     }
-    console.log(allBtn);
   }, [genre]);
 
   return (
