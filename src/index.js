@@ -34,6 +34,12 @@ footer, header, hgroup, main, menu, nav, section {
 *[hidden] {
     display: none;
 }
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 body {
   line-height: 1;
 }
@@ -57,7 +63,7 @@ table {
 }
 body {
   font-weight: 300;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: Pretendard-Regular, sans-serif;
   color:black;
   line-height: 1.2;
 }
