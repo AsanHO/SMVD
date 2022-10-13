@@ -22,6 +22,7 @@ const Wrapper = styled.div`
 // 로고 이미지 크기 반응형?
 const Logo = styled.img`
   opacity: 100%;
+  width: 80%;
 `;
 const Menus = styled.div`
   display: flex;
@@ -51,7 +52,7 @@ const MWrapper = styled.div`
   align-items: center;
   padding: 0 2em;
   height: 10vh;
-  background-color: red;
+  background-color: white;
   &.hide {
     transform: translateY(-8em);
   }
@@ -136,10 +137,10 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
       <Mobile>
         <MWrapper className={hide && "hide"}>
           <Link to="/">
-            <Logo src="logo.png" />
+            <Logo src="logo.png" style={{ width: "50%" }} />
           </Link>
           <svg
-            style={{ width: "9%" }}
+            style={{ width: "30px" }}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
             onClick={toggleBurger}
