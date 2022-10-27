@@ -18,7 +18,7 @@ const Main = styled.div`
   align-items: center;
 `;
 
-const Home = () => {
+const Home = ({ isMobile }) => {
   return (
     <Wrapper>
       <Swiper
@@ -29,8 +29,7 @@ const Home = () => {
         modules={[Mousewheel]}
         className="mySwiper"
         style={{
-          height: "84vh",
-
+          height: isMobile ? "90vh" : "86vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -42,7 +41,8 @@ const Home = () => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                width: "81%",
+                height: !isMobile && "86vh",
+                width: isMobile && "100%",
               }}
               src="mainmotion.gif"
               alt=""
@@ -51,12 +51,28 @@ const Home = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Main>
-            <video style={{ width: "80%" }} src="sample.mp4" controls loop />
+            <video
+              style={{
+                height: !isMobile && "80vh",
+                width: isMobile && "100%",
+              }}
+              src="sample.mp4"
+              controls
+              loop
+            />
           </Main>
         </SwiperSlide>
         <SwiperSlide>
           <Main>
-            <video style={{ width: "80%" }} src="sample.mp4" controls loop />
+            <video
+              style={{
+                height: !isMobile && "80vh",
+                width: isMobile && "100%",
+              }}
+              src="sample.mp4"
+              controls
+              loop
+            />
           </Main>
         </SwiperSlide>
       </Swiper>

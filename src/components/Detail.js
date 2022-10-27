@@ -1,18 +1,23 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useEffect } from "react";
 
 const Overlay = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   padding: 2% 0;
-  z-index: 3;
+  z-index: 1;
+`;
+const Background = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const Wrapper = styled(motion.div)`
@@ -20,17 +25,7 @@ const Wrapper = styled(motion.div)`
   background-color: black;
   overflow-y: auto;
   border-radius: 15px;
-  overflow: overlay;
-  &::-webkit-scrollbar{
-    width: 8px;
-  }
-  &::-webkit-scrollbar-thumb{
-    background-color: lightgray;
-    border-radius: 50px;
-  }
-  &::-webkit-scrollbar-track{
-    background:none;
-  }
+  z-index: 1;
 `;
 const GoBack = styled.div`
   cursor: pointer;
@@ -45,8 +40,8 @@ const GoBack = styled.div`
   background-color: wheat;
   font-size: 30px;
   font-weight: 800;
+  z-index: 1;
 `;
-
 
 const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   console.log(designer);
@@ -54,13 +49,7 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   const goBack = () => {
     setSelected(null);
     navigate(-1);
-  
   };
-  useEffect(() => {
-    document.body.style= `overflow: hidden`;
-    return () => document.body.style = `overflow: auto`
-  }, [])
-  
   return (
     <Overlay>
       <GoBack onClick={goBack}>X</GoBack>
@@ -92,6 +81,7 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
         />
         <img src={designer.mainUrl} style={{ width: "100%" }} alt="" />
       </Wrapper>
+      <Background onClick={goBack} />
     </Overlay>
   );
 };
