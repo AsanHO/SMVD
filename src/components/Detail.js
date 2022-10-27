@@ -40,6 +40,7 @@ const Wrapper = styled(motion.div)`
   &::-webkit-scrollbar-track{
     background:none;
   z-index: 1;
+  }
 `;
 const GoBack = styled.div`
   cursor: pointer;
