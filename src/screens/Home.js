@@ -41,7 +41,8 @@ const Home = ({ isMobile }) => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                height: isMobile ? "90vh" : "86vh",
+                height: !isMobile && "86vh",
+                width: isMobile && "100%",
               }}
               src="mainmotion.gif"
               alt=""
@@ -51,7 +52,10 @@ const Home = ({ isMobile }) => {
         <SwiperSlide>
           <Main>
             <video
-              style={{ height: isMobile ? "90vh" : "86vh" }}
+              style={{
+                height: !isMobile && "80vh",
+                width: isMobile && "100%",
+              }}
               src="sample.mp4"
               controls
               loop
@@ -61,7 +65,10 @@ const Home = ({ isMobile }) => {
         <SwiperSlide>
           <Main>
             <video
-              style={{ height: isMobile ? "90vh" : "86vh" }}
+              style={{
+                height: !isMobile && "80vh",
+                width: isMobile && "100%",
+              }}
               src="sample.mp4"
               controls
               loop
