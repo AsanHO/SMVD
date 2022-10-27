@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useEffect, useState, useRef } from "react";
 
 const Overlay = styled.div`
   position: absolute;
@@ -44,7 +43,6 @@ const GoBack = styled.div`
   z-index: 1;
 `;
 
-
 const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   console.log(designer);
   const navigate = useNavigate();
@@ -52,29 +50,15 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
     setSelected(null);
     navigate(-1);
   };
-  const modalEl = useRef();
-  const [isOpen, setOpen] = useState(false);
-
-  const handleClickOutside = ({ target }) => {
-    if (isOpen && !modalEl.current.contains(target)) setOpen(false);
-  };
-
-  useEffect(() => {
-    window.addEventListener("click", handleClickOutside);
-    return () => {
-      window.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
   return (
-    <Overlay onClick={goBack}>
+    <Overlay>
       <GoBack onClick={goBack}>X</GoBack>
       {isLoggedIn && (
         <GoBack style={{ top: "15%" }} onClick={goBack}>
           🖊
         </GoBack>
       )}
-      { isOpen && (<Wrapper layoutId={layoutId}>
+      <Wrapper layoutId={layoutId}>
         {designer.utubeVideoId && (
           <iframe
             id="ytplayer"
@@ -96,9 +80,8 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
           title="utube"
         />
         <img src={designer.mainUrl} style={{ width: "100%" }} alt="" />
-      </Wrapper>)}
+      </Wrapper>
       <Background onClick={goBack} />
-
     </Overlay>
   );
 };
