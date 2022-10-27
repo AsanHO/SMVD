@@ -7,6 +7,7 @@ const Overlay = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   padding: 2% 0;
@@ -25,6 +26,19 @@ const Wrapper = styled(motion.div)`
   background-color: black;
   overflow-y: auto;
   border-radius: 15px;
+  background-color: black;
+  overflow-y: auto;
+  border-radius: 15px;
+  overflow: overlay;
+  &::-webkit-scrollbar{
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: lightgray;
+    border-radius: 50px;
+  }
+  &::-webkit-scrollbar-track{
+    background:none;
   z-index: 1;
 `;
 const GoBack = styled.div`
@@ -50,6 +64,11 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
     setSelected(null);
     navigate(-1);
   };
+  useEffect(() => {
+    document.body.style= `overflow: hidden`;
+    return () => document.body.style = `overflow: auto`
+  }, [])
+
   return (
     <Overlay>
       <GoBack onClick={goBack}>X</GoBack>
