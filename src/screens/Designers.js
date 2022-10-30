@@ -135,7 +135,11 @@ const Designer = ({ isLoggedIn }) => {
             {designers.map((designer) => (
               <MProfile key={designer.id} onClick={() => onClick(designer)}>
                 <img
-                  style={{ width: "140px", height: "140px" }}
+                  style={{
+                    width: "140px",
+                    height: "140px",
+                    borderRadius: "15px",
+                  }}
                   src={designer.profileUrl}
                   alt=""
                 />

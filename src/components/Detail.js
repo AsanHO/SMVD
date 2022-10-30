@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const Overlay = styled.div`
   position: absolute;
@@ -25,7 +26,6 @@ const Background = styled.div`
 const Wrapper = styled(motion.div)`
   width: 80vw;
   background-color: black;
-  overflow-y: auto;
   border-radius: 15px;
   background-color: black;
   overflow-y: auto;
@@ -59,7 +59,31 @@ const GoBack = styled.div`
   font-weight: 800;
   z-index: 1;
 `;
-
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992 });
+  return isDesktop ? children : null;
+};
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 991 });
+  return isMobile ? children : null;
+};
+const MOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  padding: 2% 0;
+`;
+const MWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  margin-top: 8vh;
+  overflow-y: auto;
+`;
 const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   console.log(designer);
   const navigate = useNavigate();
@@ -73,38 +97,69 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   }, []);
 
   return (
-    <Overlay>
-      <GoBack onClick={goBack}>X</GoBack>
-      {isLoggedIn && (
-        <GoBack style={{ top: "15%" }} onClick={goBack}>
-          🖊
-        </GoBack>
-      )}
-      <Wrapper layoutId={layoutId}>
-        {designer.utubeVideoId && (
-          <iframe
-            id="ytplayer"
-            type="text/html"
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${designer.utubeVideoId}`}
-            frameborder="0"
-            title="utube"
-          />
-        )}
-        <iframe
-          id="ytplayer"
-          type="text/html"
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/7v6NDhHlf0A"
-          frameborder="0"
-          title="utube"
-        />
-        <img src={designer.mainUrl} style={{ width: "100%" }} alt="" />
-      </Wrapper>
-      <Background onClick={goBack} />
-    </Overlay>
+    <>
+      <Desktop>
+        <Overlay>
+          <GoBack onClick={goBack}>X</GoBack>
+          {isLoggedIn && (
+            <GoBack style={{ top: "15%" }} onClick={goBack}>
+              🖊
+            </GoBack>
+          )}
+          <Wrapper layoutId={layoutId}>
+            {designer.utubeVideoId && (
+              <iframe
+                id="ytplayer"
+                type="text/html"
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${designer.utubeVideoId}`}
+                frameborder="0"
+                title="utube"
+              />
+            )}
+            <iframe
+              id="ytplayer"
+              type="text/html"
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/7v6NDhHlf0A"
+              frameborder="0"
+              title="utube"
+            />
+            <img src={designer.mainUrl} style={{ width: "100%" }} alt="" />
+          </Wrapper>
+          <Background onClick={goBack} />
+        </Overlay>
+      </Desktop>
+      <Mobile>
+        <MOverlay>
+          <MWrapper layoutId={layoutId}>
+            {designer.utubeVideoId && (
+              <iframe
+                id="ytplayer"
+                type="text/html"
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${designer.utubeVideoId}`}
+                frameborder="0"
+                title="utube"
+              />
+            )}
+            <iframe
+              id="ytplayer"
+              type="text/html"
+              width="100%"
+              height="50%"
+              src="https://www.youtube.com/embed/7v6NDhHlf0A"
+              frameborder="0"
+              title="utube"
+            />
+            <img src={designer.mainUrl} style={{ width: "100%" }} alt="" />
+          </MWrapper>
+        </MOverlay>
+      </Mobile>
+    </>
   );
 };
 
