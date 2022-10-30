@@ -31,16 +31,16 @@ const Wrapper = styled(motion.div)`
   overflow-y: auto;
   border-radius: 15px;
   overflow: overlay;
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     width: 8px;
   }
-  &::-webkit-scrollbar-thumb{
+  &::-webkit-scrollbar-thumb {
     background-color: lightgray;
     border-radius: 50px;
   }
-  &::-webkit-scrollbar-track{
-    background:none;
-  z-index: 1;
+  &::-webkit-scrollbar-track {
+    background: none;
+    z-index: 1;
   }
 `;
 const GoBack = styled.div`
@@ -67,9 +67,9 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
     navigate(-1);
   };
   useEffect(() => {
-    document.body.style= `overflow: hidden`;
-    return () => document.body.style = `overflow: auto`
-  }, [])
+    document.body.style = `overflow: hidden`;
+    return () => (document.body.style = `overflow: auto`);
+  }, []);
 
   return (
     <Overlay>
