@@ -5,6 +5,7 @@ import Detail from "../components/Detail";
 import { dbService } from "../firebase";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+import { AnimatePresence, motion } from "framer-motion";
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
   return isDesktop ? children : null;
@@ -56,7 +57,7 @@ const Opt = styled.div`
   }
 `;
 
-const Thumnail = styled.div`
+const Thumnail = styled(motion.div)`
   margin: 0 auto;
   text-align: center;
 `;
@@ -83,6 +84,7 @@ const Exhibition = () => {
   const [designers, setDesigners] = useState([]);
   const [initDesigners, setInitDesigners] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [layOutId, setLayOutId] = useState(null);
   const getDesigners = async () => {
     setInitDesigners([]);
     const designRef = collection(dbService, "designers");
@@ -113,6 +115,7 @@ const Exhibition = () => {
   };
   const navigate = useNavigate();
   const onClickThumnail = (designer) => {
+    setLayOutId(designer.id);
     setSelected(designer);
     navigate(`/exhibition/${designer.id}`);
   };
@@ -187,7 +190,17 @@ const Exhibition = () => {
   return (
     <>
       <Desktop>
-        {selected && <Detail designer={selected} setSelected={setSelected} />}
+        {selected && (
+          <AnimatePresence>
+            <motion.div>
+              <Detail
+                designer={selected}
+                setSelected={setSelected}
+                layoutId={layOutId}
+              />
+            </motion.div>
+          </AnimatePresence>
+        )}
         <Bar>
           <Opt onClick={onClick} inputcolor={allBtn} id="ALL">
             ALL
@@ -214,10 +227,11 @@ const Exhibition = () => {
               <Thumnail
                 key={designer.id}
                 onClick={() => onClickThumnail(designer)}
+                layoutId={designer.id}
               >
-                <img src={designer.thumnailUrl} height="250px" alt="" />
-                <p>{designer.workName}</p>
-                <p>{designer.genre}</p>
+                <motion.img src={designer.thumnailUrl} height="250px" alt="" />
+                <motion.p>{designer.workName}</motion.p>
+                <motion.p>{designer.genre}</motion.p>
               </Thumnail>
             ))}
           </Thumnails>
