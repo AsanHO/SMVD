@@ -12,7 +12,7 @@ const Overlay = styled.div`
   display: flex;
   justify-content: center;
   padding: 2% 0;
-  z-index: 1;
+  z-index: 3;
 `;
 const Background = styled.div`
   position: absolute;
@@ -31,6 +31,7 @@ const Wrapper = styled(motion.div)`
   overflow-y: auto;
   border-radius: 15px;
   overflow: overlay;
+  z-index: 1;
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -38,9 +39,9 @@ const Wrapper = styled(motion.div)`
     background-color: lightgray;
     border-radius: 50px;
   }
+
   &::-webkit-scrollbar-track {
     background: none;
-    z-index: 1;
   }
 `;
 const GoBack = styled.div`
