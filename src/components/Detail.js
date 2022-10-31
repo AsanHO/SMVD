@@ -83,6 +83,7 @@ const MWrapper = styled.div`
   background-color: black;
   margin-top: 8vh;
   overflow-y: auto;
+  z-index:1;
 `;
 const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   console.log(designer);
@@ -92,7 +93,10 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
     navigate(-1);
   };
   useEffect(() => {
-    document.body.style = `overflow: hidden`;
+    document.body.style = `
+    overflow: hidden;
+    z-index:10;
+    `;
     return () => (document.body.style = `overflow: auto`);
   }, []);
 

@@ -49,6 +49,7 @@ const Opt = styled.div`
   display: inline-block;
   text-align: center;
   padding: 6px 8px 6px 8px;
+  z-index:0;
   background-color: ${(props) => props.inputcolor || "white"};
   &:hover {
     transition: 0.3s;

@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 2em;
   height: 14vh;
+  box-shadow: 0 2px 5px lightgray;
   &.hide {
     transform: translateY(-8em);
   }
@@ -26,13 +27,19 @@ const Logo = styled.img`
 `;
 const Menus = styled.div`
   display: flex;
-  width: 20%;
+  margin-right: 10%;
+  width: 35%;
   justify-content: space-between;
 `;
-const Menu = styled.span`
+const Menu = styled.div`
+  width: 300%;
+  margin: auto;
   text-decoration: none;
+  text-align: center;
   color: black;
   opacity: 100%;
+  font-weight: bold;
+  margin-left: 8%;
 `;
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -75,6 +82,42 @@ const Burger = styled.div`
 const MMenu = styled.span`
   color: white;
 `;
+
+const DropDown = styled.div`
+  position: relative;
+  display: inline-block;
+`
+
+const DropBtn = styled.div`
+  width: 100%;
+  height: auto;
+`
+
+const HidBtns = styled.div`
+  position: absolute;
+  z-index: 10;
+  width: 300%;
+  background-color: white;
+  box-shadow: 0 2px 5px lightgray;
+  disply: block;
+`
+
+const dropbtn = (()=>{
+  let drop = document.getElementById("dp-content");
+  if(drop.style.display === "none"){
+    drop.style.display = "block";
+  }else{
+    drop.style.display = "none";
+  }
+});
+
+const dropbtnoff = (()=>{
+  let drop = document.getElementById("dp-content");
+  if(drop.style.display === "block"){
+    drop.style.display = "none";
+  }
+})
+
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const [isburger, setIsBurger] = useState(false);
   const toggleBurger = () => setIsBurger(!isburger);
@@ -122,9 +165,24 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
           </Link>
           <Menus>
             {isLoggedIn && <span onClick={onLogout}>Logout</span>}
-            <Link to="/about1">
-              <Menu>ABOUT</Menu>
-            </Link>
+            <DropDown>
+              <DropBtn onMouseOver={dropbtn} onMouseOut={dropbtnoff}>  
+                <Link to="/about1">
+                  <Menu>ABOUT</Menu>
+                </Link>
+              </DropBtn>
+              <HidBtns id="dp-content" onMouseOver={dropbtn} onMouseOut={dropbtnoff}>
+                <Link id="dp-btn" to="/about1" style={{display:"flex", marginTop:"7%", marginBottom:"7%"}}>
+                <Menu>전시소개</Menu>
+                </Link>
+                <Link id="dp-btn" to="/about2" style={{display:"flex", marginTop:"7%", marginBottom:"7%"}}>
+                  <Menu>축사 & 교수진</Menu>
+                </Link>
+                <Link id="dp-btn" to="/about3" style={{display:"flex", marginTop:"7%", marginBottom:"7%"}}>
+                  <Menu>학과소개</Menu>
+                </Link>
+              </HidBtns>
+            </DropDown>
             <Link to="/designer">
               <Menu>DESIGNERS</Menu>
             </Link>
