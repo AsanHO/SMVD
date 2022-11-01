@@ -40,21 +40,34 @@ const Bar = styled.div`
 
 const Opt = styled.div`
   width: auto;
-  margin-right: 15px;
-  margin-bottom: 10px;
   position: relative;
-  border: 1px solid lightgray;
-  border-radius: 25px;
-  color: #5f6368;
-  display: inline-block;
+  color: ${(props) => props.inputcolor || "#ddd"};
+
+  padding: 6px 15px 6px 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline;
+  cursor: pointer;
+  caret-color: white;
+
+  background-color: "white";
+  font-wight: 900;
   text-align: center;
-  padding: 6px 8px 6px 8px;
   z-index:0;
-  background-color: ${(props) => props.inputcolor || "white"};
-  &:hover {
-    transition: 0.3s;
-    background-color: black;
-    color: white;
+
+  &:after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 1px;
+    height: 12px;
+    margin-top: -6px;
+    background-color: #ddd;
+    content: '';
+  }
+  &:last-child:after {
+    content: none;
   }
 `;
 
@@ -134,7 +147,7 @@ const Exhibition = () => {
   const [charBtn, setCharBtn] = useState(false);
   const [gameBtn, setGameBtn] = useState(false);
 
-  useEffect(() => {
+  const setBtnColorByGenre = genre => {
     switch (genre) {
       case "ALL":
         setAllBtn("black");
@@ -186,7 +199,14 @@ const Exhibition = () => {
         break;
       default:
     }
+  }
+
+  useEffect(() => {
+    setBtnColorByGenre(genre)
   }, [genre]);
+
+  const mouseEnter = e => setBtnColorByGenre(e.target.id);
+  const mouseLeave = e => setBtnColorByGenre(genre);
 
   return (
     <>
@@ -203,22 +223,22 @@ const Exhibition = () => {
           </AnimatePresence>
         )}
         <Bar>
-          <Opt onClick={onClick} inputcolor={allBtn} id="ALL">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={allBtn} id="ALL">
             ALL
           </Opt>
-          <Opt onClick={onClick} inputcolor={uxuiBtn} id="UX/UI">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={uxuiBtn} id="UX/UI">
             UX/UI
           </Opt>
-          <Opt onClick={onClick} inputcolor={adBtn} id="ADVERTISEMENT">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={adBtn} id="ADVERTISEMENT">
             ADVERTISEMENT
           </Opt>
-          <Opt onClick={onClick} inputcolor={idBtn} id="IDENTITY">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={idBtn} id="IDENTITY">
             IDENTITY
           </Opt>
-          <Opt onClick={onClick} inputcolor={charBtn} id="CHARACTER">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={charBtn} id="CHARACTER">
             CHARACTER
           </Opt>
-          <Opt onClick={onClick} inputcolor={gameBtn} id="GAME">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={gameBtn} id="GAME">
             GAME
           </Opt>
         </Bar>
@@ -241,22 +261,22 @@ const Exhibition = () => {
       <Mobile>
         {selected && <Detail designer={selected} setSelected={setSelected} />}
         <Bar>
-          <Opt onClick={onClick} inputcolor={allBtn} id="ALL">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={allBtn} id="ALL">
             ALL
           </Opt>
-          <Opt onClick={onClick} inputcolor={uxuiBtn} id="UX/UI">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={uxuiBtn} id="UX/UI">
             UX/UI
           </Opt>
-          <Opt onClick={onClick} inputcolor={adBtn} id="ADVERTISEMENT">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={adBtn} id="ADVERTISEMENT">
             ADVERTISEMENT
           </Opt>
-          <Opt onClick={onClick} inputcolor={idBtn} id="IDENTITY">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={idBtn} id="IDENTITY">
             IDENTITY
           </Opt>
-          <Opt onClick={onClick} inputcolor={charBtn} id="CHARACTER">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={charBtn} id="CHARACTER">
             CHARACTER
           </Opt>
-          <Opt onClick={onClick} inputcolor={gameBtn} id="GAME">
+          <Opt onClick={onClick} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} inputcolor={gameBtn} id="GAME">
             GAME
           </Opt>
         </Bar>
