@@ -99,7 +99,7 @@ const HidBtns = styled.div`
   width: 300%;
   background-color: white;
   box-shadow: 0 2px 5px lightgray;
-  disply: block;
+  disply: none;
 `
 
 const dropbtn = (()=>{

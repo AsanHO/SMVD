@@ -17,6 +17,9 @@ const example = {
   float:"left",
 };
 
+let bstyle = document.getElementById("grayblock")
+
+
 const About1 = () => {
   return <>
   <Container>
@@ -47,7 +50,7 @@ const About1 = () => {
           </p>
         </div>
     </Box>
-    <Box>
+    <Box id="grayblock">
         <div style={hstyle}>
           전시 로고
         </div>
