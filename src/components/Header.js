@@ -7,7 +7,7 @@ import { getAuth, signOut } from "firebase/auth";
 const Wrapper = styled.div`
   background-color: white;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   box-sizing: border-box;
   display: flex;
   width: 100%;
