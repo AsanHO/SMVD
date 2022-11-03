@@ -51,7 +51,7 @@ const Mobile = ({ children }) => {
 };
 const MWrapper = styled.div`
   position: fixed;
-  z-index: 2;
+  z-index: 1;
   box-sizing: border-box;
   display: flex;
   width: 100%;
