@@ -111,12 +111,6 @@ const dropbtn = (()=>{
   }
 });
 
-const dropbtnoff = (()=>{
-  let drop = document.getElementById("dp-content");
-  if(drop.style.display === "block"){
-    drop.style.display = "none";
-  }
-})
 
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const [isburger, setIsBurger] = useState(false);
@@ -166,12 +160,12 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
           <Menus>
             {isLoggedIn && <span onClick={onLogout}>Logout</span>}
             <DropDown>
-              <DropBtn onMouseOver={dropbtn} onMouseOut={dropbtnoff}>  
+              <DropBtn onMouseOver={dropbtn}>  
                 <Link to="/about1">
                   <Menu>ABOUT</Menu>
                 </Link>
               </DropBtn>
-              <HidBtns id="dp-content" onMouseOver={dropbtn} onMouseOut={dropbtnoff}>
+              <HidBtns id="dp-content" onMouseOver={dropbtn} style={{display:"none"}}>
                 <Link id="dp-btn" to="/about1" style={{display:"flex", marginTop:"7%", marginBottom:"7%"}}>
                 <Menu>전시소개</Menu>
                 </Link>
