@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { useState, useEffect, useRef } from "react";
 import { getAuth, signOut } from "firebase/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCamera, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -67,31 +69,42 @@ const MWrapper = styled.div`
 
 // max-width 정해주기..
 const Burger = styled.div`
+  z-index: 3;
   position: absolute;
   height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
+  padding: 5%;
   transform: ${(props) =>
-    props.isBurger ? "translateX(30%)" : "translateX(100%)"};
+    props.isBurger ? "translateX(10%)" : "translateX(100%)"};
   opacity: ${(props) => (props.isBurger ? "1" : "0")};
   background-color: black;
-  z-index: 2;
-  transition: all 0.2s;
+  transition: all 0.2s ease-in-out;
+  color: white;
 `;
 const MMenu = styled.span`
   color: white;
+  padding-top: 10%;
 `;
-
+const BurgerOverlay = styled.div`
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: ${(props) => (props.isBurger ? "block" : "none")};
+  transition: all 0.2s ease-in-out;
+`;
 const DropDown = styled.div`
   position: relative;
   display: inline-block;
-`
+`;
 
 const DropBtn = styled.div`
   width: 100%;
   height: auto;
-`
+`;
 
 const HidBtns = styled.div`
   position: absolute;
@@ -99,24 +112,24 @@ const HidBtns = styled.div`
   width: 300%;
   background-color: white;
   box-shadow: 0 2px 5px lightgray;
-  disply: block;
-`
+  display: block;
+`;
 
-const dropbtn = (()=>{
+const dropbtn = () => {
   let drop = document.getElementById("dp-content");
-  if(drop.style.display === "none"){
+  if (drop.style.display === "none") {
     drop.style.display = "block";
-  }else{
+  } else {
     drop.style.display = "none";
   }
-});
+};
 
-const dropbtnoff = (()=>{
+const dropbtnoff = () => {
   let drop = document.getElementById("dp-content");
-  if(drop.style.display === "block"){
+  if (drop.style.display === "block") {
     drop.style.display = "none";
   }
-})
+};
 
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const [isburger, setIsBurger] = useState(false);
@@ -166,19 +179,47 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
           <Menus>
             {isLoggedIn && <span onClick={onLogout}>Logout</span>}
             <DropDown>
-              <DropBtn onMouseOver={dropbtn} onMouseOut={dropbtnoff}>  
+              <DropBtn onMouseOver={dropbtn} onMouseOut={dropbtnoff}>
                 <Link to="/about1">
                   <Menu>ABOUT</Menu>
                 </Link>
               </DropBtn>
-              <HidBtns id="dp-content" onMouseOver={dropbtn} onMouseOut={dropbtnoff}>
-                <Link id="dp-btn" to="/about1" style={{display:"flex", marginTop:"7%", marginBottom:"7%"}}>
-                <Menu>전시소개</Menu>
+              <HidBtns
+                id="dp-content"
+                onMouseOver={dropbtn}
+                onMouseOut={dropbtnoff}
+              >
+                <Link
+                  id="dp-btn"
+                  to="/about1"
+                  style={{
+                    display: "flex",
+                    marginTop: "7%",
+                    marginBottom: "7%",
+                  }}
+                >
+                  <Menu>전시소개</Menu>
                 </Link>
-                <Link id="dp-btn" to="/about2" style={{display:"flex", marginTop:"7%", marginBottom:"7%"}}>
+                <Link
+                  id="dp-btn"
+                  to="/about2"
+                  style={{
+                    display: "flex",
+                    marginTop: "7%",
+                    marginBottom: "7%",
+                  }}
+                >
                   <Menu>축사 & 교수진</Menu>
                 </Link>
-                <Link id="dp-btn" to="/about3" style={{display:"flex", marginTop:"7%", marginBottom:"7%"}}>
+                <Link
+                  id="dp-btn"
+                  to="/about3"
+                  style={{
+                    display: "flex",
+                    marginTop: "7%",
+                    marginBottom: "7%",
+                  }}
+                >
                   <Menu>학과소개</Menu>
                 </Link>
               </HidBtns>
@@ -207,17 +248,29 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
           </svg>
         </MWrapper>
         <Burger isBurger={isburger}>
-          <button onClick={toggleBurger}>x</button>
-          <Link to="/about1" onClick={toggleBurger}>
-            <MMenu>ABOUT</MMenu>
-          </Link>
-          <Link to="/designer" onClick={toggleBurger}>
-            <MMenu>DESIGNER</MMenu>
-          </Link>
-          <Link to="/exhibition" onClick={toggleBurger}>
-            <MMenu>EXHIBITION</MMenu>
-          </Link>
+          <FontAwesomeIcon
+            icon={faXmark}
+            size="2x"
+            onClick={toggleBurger}
+            style={{ marginLeft: "65%" }}
+          />
+          <MMenu>
+            <Link to="/about1" onClick={toggleBurger}>
+              ABOUT
+            </Link>
+          </MMenu>
+          <MMenu>
+            <Link to="/designer" onClick={toggleBurger}>
+              DESIGNER
+            </Link>
+          </MMenu>
+          <MMenu>
+            <Link to="/exhibition" onClick={toggleBurger}>
+              EXHIBITION
+            </Link>
+          </MMenu>
         </Burger>
+        <BurgerOverlay isBurger={isburger} onClick={toggleBurger} />
       </Mobile>
     </>
   );
