@@ -187,6 +187,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                 id="dp-content"
                 onMouseOver={dropbtn}
                 onMouseOut={dropbtnoff}
+                style={{display: "none"}}
               >
                 <Link
                   id="dp-btn"
