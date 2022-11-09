@@ -115,22 +115,21 @@ const HidBtns = styled.div`
   display: block;
 `;
 
-const dropbtn = () => {
+const dropbtn = (() => {
   let drop = document.getElementById("dp-content");
   if (drop.style.display === "none") {
     drop.style.display = "block";
   } else {
     drop.style.display = "none";
   }
-};
+});
 
-const dropbtnoff = () => {
+const dropbtnoff = (() => {
   let drop = document.getElementById("dp-content");
-  if (drop.style.display === "block") {
+  if(drop.style.display === "block"){
     drop.style.display = "none";
   }
-};
-
+})
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const [isburger, setIsBurger] = useState(false);
   const toggleBurger = () => setIsBurger(!isburger);
@@ -177,7 +176,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
             <Logo src="logo.png" />
           </Link>
           <Menus>
-            {isLoggedIn && <span onClick={onLogout}>Logout</span>}
+            {isLoggedIn && <span onClick={onLogout} onMouseLeave={dropbtnoff}>Logout</span>}
             <DropDown>
               <DropBtn onMouseOver={dropbtn} onMouseOut={dropbtnoff}>
                 <Link to="/about1">
@@ -188,6 +187,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                 id="dp-content"
                 onMouseOver={dropbtn}
                 onMouseOut={dropbtnoff}
+                style={{display: "none"}}
               >
                 <Link
                   id="dp-btn"
