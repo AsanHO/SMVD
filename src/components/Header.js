@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 2em;
+  padding: 2em 130px;
   height: 11vh;
   box-shadow: 0 2px 5px lightgray;
   &.hide {
@@ -24,17 +24,14 @@ const Wrapper = styled.div`
 `;
 // 로고 이미지 크기 반응형?
 const Logo = styled.img`
-  opacity: 100%;
-  width: 50%;
+  width: 200px;
 `;
 const Menus = styled.div`
   display: flex;
-  margin-right: 10%;
   width: 35%;
   justify-content: space-between;
 `;
 const Menu = styled.div`
-  width: 300%;
   margin: auto;
   text-decoration: none;
   text-align: center;
