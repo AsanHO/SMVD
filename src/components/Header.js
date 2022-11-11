@@ -15,8 +15,8 @@ const Wrapper = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 2em;
-  height: 14vh;
+  padding: 2em 130px;
+  height: 11vh;
   box-shadow: 0 2px 5px lightgray;
   &.hide {
     transform: translateY(-8em);
@@ -24,24 +24,20 @@ const Wrapper = styled.div`
 `;
 // 로고 이미지 크기 반응형?
 const Logo = styled.img`
-  opacity: 100%;
-  width: 80%;
+  width: 200px;
 `;
 const Menus = styled.div`
   display: flex;
-  margin-right: 10%;
   width: 35%;
   justify-content: space-between;
 `;
 const Menu = styled.div`
-  width: 300%;
   margin: auto;
   text-decoration: none;
   text-align: center;
   color: black;
   opacity: 100%;
   font-weight: bold;
-  margin-left: 8%;
 `;
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -116,21 +112,21 @@ const HidBtns = styled.div`
   margin-left:5px;
 `;
 
-const dropbtn = (() => {
+const dropbtn = () => {
   let drop = document.getElementById("dp-content");
   if (drop.style.display === "none") {
     drop.style.display = "block";
   } else {
     drop.style.display = "none";
   }
-});
+};
 
-const dropbtnoff = (() => {
+const dropbtnoff = () => {
   let drop = document.getElementById("dp-content");
-  if(drop.style.display === "block"){
+  if (drop.style.display === "block") {
     drop.style.display = "none";
   }
-})
+};
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const [isburger, setIsBurger] = useState(false);
   const toggleBurger = () => setIsBurger(!isburger);
@@ -177,7 +173,11 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
             <Logo src="logo.png" />
           </Link>
           <Menus>
-            {isLoggedIn && <span onClick={onLogout} onMouseLeave={dropbtnoff}>Logout</span>}
+            {isLoggedIn && (
+              <span onClick={onLogout} onMouseLeave={dropbtnoff}>
+                Logout
+              </span>
+            )}
             <DropDown>
               <DropBtn onMouseOver={dropbtn} onMouseOut={dropbtnoff}>
                 <Link to="/about1">
@@ -188,7 +188,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                 id="dp-content"
                 onMouseOver={dropbtn}
                 onMouseOut={dropbtnoff}
-                style={{display: "none"}}
+                style={{ display: "none" }}
               >
                 <Link
                   id="dp-btn"

@@ -12,7 +12,7 @@ import { useMediaQuery } from "react-responsive";
 
 const Wrapper = styled.div`
   width: 100%;
-  padding-top: ${(props) => (props.isMobile ? "10vh" : "14vh")};
+  padding-top: ${(props) => (props.isMobile ? "10vh" : "11vh")};
 `;
 
 const AppRouter = ({ isLoggedIn, setIsLoggedIn }) => {
