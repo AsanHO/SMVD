@@ -3,7 +3,10 @@ import styled from "styled-components"
 const Container = styled.div`
   height: 100%;
   overflow-x: hidden;
+  overflow-y: hidden;
+  justify-items: center;
 `
+
 const Box = styled.div`
   margin: 10%;
 `
@@ -11,12 +14,13 @@ const Box = styled.div`
 const GrayPart = styled.div`
   background-color: #f4f4f4;
   height: 80%;
+  padding: 0.1px;
 `
 
 const IntroGrid = styled.div`
   display: grid;
   line-height: 30pt;
-  grid-template-coloms: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 2fr 1fr;
   font-size: 19pt;
   justify-items: center;
@@ -27,8 +31,7 @@ const OGrid = styled.div`
   display: grid;
   font-size: 19pt;
   line-height: 30pt;
-  grid-template-colums: repeat(2, 1fr);
-  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
   column-gap: 10%;
   margin-bottom: 10%
 `
@@ -42,47 +45,43 @@ const hstyle = {
 
 const ImgBox = styled.div`
   display: flex;
-  margin-left: -50%;
+  justify-content: space-between;
 `
 
 const img1 = {
-  width:"550px", 
-  height:"805px", 
+  width:"210px", 
+  height:"40%", 
   float:"left", 
-  marginTop:"-15px",
+  marginTop:"5px",
 };
 
 const img2 = {
-  width:"550px", 
-  height:"750px", 
+  width:"283px", 
+  height:"40%", 
   float:"left",
-  marginLeft: "5%",
 };
 const img3 = {
-  width:"550px", 
-  height:"751px", 
+  width:"283px", 
+  height:"40%", 
   float:"left",
-  marginLeft: "5%",
 };
 const img4 = {
-  width:"720px", 
-  height:"890px", 
-  float:"left", 
-  marginTop:"-50px",
-  marginLeft: "5%",
+  width:"195px", 
+  height:"50%", 
+  float:"left",
 };
 
 const NGrid = styled.div`
   display: grid;
-  grid-template-colums: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 10%;
   text-align: center;
+  margin-bottom: 10%;
 `
 
 const NtGrid = styled.div`
   display: grid;
-  grid-template-colums: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   text-align: center;
   colum-gap: 10%;
 `
@@ -100,8 +99,9 @@ const nsstyle = {
 const About1 = () => {
   return <>
   <Container>
-    <Box>
+    <Box style={{position:"relative"}}>
         <img src="logocolor.png" style={{marginBottom:"8%", display:"inline"}}></img><br></br>
+        <img src="ABOUT_graphic_1.png" style={{position:"absolute",float:"right", marginLeft:"60%", marginTop:"10%",width:"55%"}}></img>
         <IntroGrid>
           <div style={{gridColumn:"1", gridRow:"1"}}>
             *빛의 성분을 파장의 순서로 나열한 것<br></br>
@@ -125,7 +125,6 @@ const About1 = () => {
           </div>
         </IntroGrid>
     </Box>
-
     <GrayPart>
       <Box>
       <div style={hstyle}>전시 로고</div>
@@ -159,14 +158,15 @@ const About1 = () => {
             flowing in.
         </div>
         </OGrid>
-        <ImgBox id="imgbox">
-          <img src="left_poster.png" style={img1}></img>
-          <img src="center_poster_l_c.png" style={img2}></img>
-          <img src="center_poster_r_c.png" style={img3}></img>
-          <img src="right_poster.png" style={img4}></img>
-        </ImgBox>
       </Box>
-      <Box>
+      <ImgBox id="imgbox">
+        <img src="l_poster.png" style={img1}></img>
+        <img src="center_poster_l_c.png" style={img2}></img>
+        <img src="center_poster_r_c.png" style={img3}></img>
+        <img src="r_poster.png" style={img4}></img>
+      </ImgBox>
+      <Box style={{position:"relative"}}>
+        <img src="ABOUT_left_graphic_2.png" style={{position:"absolute", marginTop:"-10%", marginLeft:"-26%", width:"70%", float:"left"}}></img>
         <div style={hstyle}>
           SMD 12th GRADUATION EXHIBITION
         </div>
@@ -175,16 +175,18 @@ const About1 = () => {
           학생들로 구성되어 있습니다. 졸업준비 위원회를 중심으로 모든 구성원들이 하나가 되어 SPECTRUM의 
           다채로운 연결성을 위해 끊임없이 노력하고 있습니다. 함께를 통해 배우고 성장하며, 다양한 디자인을 제작합니다
         </div>
-        <div style={{width:"70%", textAlign:"center", marginLeft:"15%", marginBottom:"5%",fontSize:"19pt"}}>
-        <span style={{fontWeight:"bold"}}>졸업전시 위원장</span>   장민혁      
-        <span style={{fontWeight:"bold"}}>졸업전시 부위원장</span>   노정은       
-        <span style={{fontWeight:"bold"}}>총무&서기</span>    강다혜 심우재 
+        <div style={{width:"70%", textAlign:"center", marginLeft:"15%", marginBottom:"10%",fontSize:"19pt"}}>
+        <span style={{fontWeight:"bold", marginRight:"3%"}}>졸업전시 위원장</span>   장민혁      
+        <span style={{fontWeight:"bold", marginRight:"3%"}}>졸업전시 부위원장</span>   노정은       
+        <span style={{fontWeight:"bold", marginRight:"3%"}}>총무&서기</span>    강다혜 심우재 
         </div>
-        <NGrid>
+        <img src="ABOUT_right_graphic_3.png" style={{position:"absolute", marginLeft:"45%", width:"90%", float:"right", overflow:"hidden"}}></img>
+        <NGrid style={{position:"relative"}}>
           <div style={{gridColumn:"1"}}>
-            <p style={dnstyle}>기획팀</p> 
-            <p style={nsstyle}>곽승연 김세헌 김수연 김유림 김혜원 이태윤 이영주 최지은</p>
+            <p style={dnstyle}>기획팀</p>
+            <p style={nsstyle}>김수연 | 곽승연 김세헌 김유림 김혜원 이태윤 이영주 최지은</p>
           </div>
+          <line style={{position:"absolute", borderRight:"solid 30px 1px black"}}></line>
           <div style={{gridColumn:"2"}}>
             <p style={dnstyle}>디자인팀</p> 
             <p style={nsstyle}>추채원 | 김수빈 김하영 남민재 모하마디 모가담 
@@ -194,15 +196,18 @@ const About1 = () => {
           </div>
           <div style={{gridColumn:"3"}}>
             <p style={dnstyle}>편집팀</p> 
-            <p style={nsstyle}>윤은영  곽연우 김정희 박지윤 박청  유라현 응옌홍후 최유정 카와사키 키미코 
+            <p style={nsstyle}>윤은영 | 곽연우 김정희 박지윤 박청  유라현 응옌홍후 최유정 카와사키 키미코 
             </p>
           </div>
         </NGrid>
         <NtGrid>
           <div style={{gridColumn:"1"}}>
-            <p style={dnstyle}>영상팀</p>  
+            <p style={{marginBottom:"5%",
+                      fontWeight:"bold",
+                      fontSize:"20pt",
+                      }}>영상팀</p>  
             <p style={nsstyle}>
-              이승민 옹가은 노연수 문영현 이의종 유리카 유문미 윤원실 토미다 히로키 
+              이승민 | 옹가은 노연수 문영현 이의종 유리카 유문미 윤원실 토미다 히로키 
             </p>
           </div>
           <div style={{gridColumn:"2"}}>
@@ -210,16 +215,9 @@ const About1 = () => {
             <p style={nsstyle}>추채원 노정은</p>
           </div>
         </NtGrid>
-      </Box>
-      <td>
-        <div style={hstyle}>지도교수님</div>
-        <tr>지도교수님 장훈종 교수 서연화 교수 나재민 교수 이하나 교수</tr>
-      </td>
-      
-    
+      </Box>    
   </Container>
-  
-  
+
   </>;
 };
 export default About1;

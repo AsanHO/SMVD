@@ -20,6 +20,12 @@ const testyle = {
   marginBottom: "5%",
 }
 
+const ImgBox = styled.div`
+  display: flex;
+  width: 70%;
+  max-width: 100%;
+`
+
 const About2 = () => {
   return <>
     <Container>
@@ -57,7 +63,30 @@ const About2 = () => {
           <p id="title" style={tstyle}>교수 소개</p>
           <p style={testyle}>Introduction of the professor</p>
         </div>
+        <ImgBox>
+          <div>
+            <img src="sign1.png"></img>
+            <p style={{textAlign:"center"}}>Professor</p>
+            <p style={{textAlign:"center"}}>Hun jong Jang</p>
+          </div>
+          <div>
+            <img src="sign2.png" style={{marginBottom:"4px"}}></img>
+            <p style={{textAlign:"center"}}>Professor</p>
+            <p style={{textAlign:"center"}}>Yeon hwa Seo</p>
+          </div>
+          <div>
+            <img src="sign3.png" style={{marginBottom:"16px"}}></img>
+            <p style={{textAlign:"center"}}>Professor</p>
+            <p style={{textAlign:"center"}}>Jae min Na</p>
+          </div>
+          <div>
+            <img src="sign4.png" style={{marginBottom:"42px"}}></img>
+            <p style={{textAlign:"center"}}>Professor</p>
+            <p style={{textAlign:"center"}}>Ha na Lee</p>
+          </div>
+        </ImgBox>
       </Box>
+
     </Container>
 
   </>;
