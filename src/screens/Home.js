@@ -29,7 +29,7 @@ const Home = ({ isMobile }) => {
         modules={[Mousewheel]}
         className="mySwiper"
         style={{
-          height: isMobile ? "90vh" : "86vh",
+          height: isMobile ? "90vh" : "89vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
