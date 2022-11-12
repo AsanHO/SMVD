@@ -64,7 +64,7 @@ const Admin = ({ isLoggedIn, setIsLoggedIn }) => {
               type="password"
               placeholder="비밀번호"
             />
-            <button>로그인</button>
+            <button>Login</button>
           </form>
         </Login>
       ) : (
