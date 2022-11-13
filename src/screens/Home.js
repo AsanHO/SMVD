@@ -44,7 +44,7 @@ const Home = ({ isMobile }) => {
                 display: "flex",
                 alignItems: "center",
                 height: !isMobile && "88vh",
-                width: isMobile && "100%",
+                width: isMobile && "100vw",
               }}
               src="main.mp4"
               muted
@@ -58,7 +58,7 @@ const Home = ({ isMobile }) => {
             <video
               style={{
                 height: !isMobile && "85vh",
-                width: isMobile && "100%",
+                width: isMobile && "100vw",
               }}
               src="sample.mp4"
               controls
@@ -71,7 +71,7 @@ const Home = ({ isMobile }) => {
             <video
               style={{
                 height: !isMobile && "85vh",
-                width: isMobile && "100%",
+                width: isMobile && "100vw",
               }}
               src="sample.mp4"
               controls

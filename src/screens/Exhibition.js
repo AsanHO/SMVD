@@ -90,7 +90,7 @@ const MThumnail = styled.div`
 const MThumnails = styled.div`
   display: grid;
   justify-content: center;
-  grid-template-columns: 250px 250px;
+  grid-template-columns: 1fr 1fr;
 `;
 
 const Exhibition = () => {
@@ -359,7 +359,7 @@ const Exhibition = () => {
                 key={designer.id}
                 onClick={() => onClickThumnail(designer)}
               >
-                <img src={designer.thumnailUrl} height="250px" alt="" />
+                <img src={designer.thumnailUrl} height="200px" alt="" />
                 <p>{designer.workName}</p>
                 <p>{designer.genre}</p>
               </MThumnail>

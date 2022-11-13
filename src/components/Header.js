@@ -52,7 +52,7 @@ const MWrapper = styled.div`
   z-index: 1;
   box-sizing: border-box;
   display: flex;
-  width: 100%;
+  width: 100vw;
   justify-content: space-between;
   align-items: center;
   padding: 0 2em;
@@ -238,6 +238,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
         <MWrapper className={hide && "hide"}>
           <Link to="/">
             <Logo src="logo.png" style={{ width: "50%" }} />
+            <span>1040dev</span>
           </Link>
           <svg
             style={{ width: "30px" }}

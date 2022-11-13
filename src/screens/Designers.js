@@ -17,6 +17,7 @@ const Wrapper = styled.div`
 `;
 
 const MWrapper = styled.div`
+  width: 100vw;
   margin: 0 auto;
 `;
 
@@ -42,7 +43,7 @@ const MProfile = styled.div`
 const MProfiles = styled.div`
   display: grid;
   justify-content: center;
-  grid-template-columns: 200px 200px;
+  grid-template-columns: 1fr 1fr;
 `;
 
 const Desktop = ({ children }) => {
@@ -143,7 +144,7 @@ const Designer = ({ isLoggedIn }) => {
                   src={designer.profileUrl}
                   alt=""
                 />
-                <span>{designer.name}</span>
+                <p>{designer.name}</p>
               </MProfile>
             ))}
           </MProfiles>

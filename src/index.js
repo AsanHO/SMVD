@@ -24,6 +24,7 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  overflow-x: hidden;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -39,9 +40,6 @@ footer, header, hgroup, main, menu, nav, section {
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
-}
-body {
-  line-height: 1;
 }
 menu, ol, ul {
   list-style: none;
@@ -66,7 +64,13 @@ body {
   font-family: Pretendard-Regular, sans-serif;
   color:black;
   line-height: 1.2;
+  overflow: hidden;
+width: 100%;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
 }
+
 a {
   text-decoration:none;
   color:inherit;
