@@ -9,13 +9,14 @@ import "swiper/css/navigation";
 import { Mousewheel } from "swiper";
 
 const Wrapper = styled.div`
-  background-color: black;
+  background-color: white;
 `;
 const Main = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 300px;
 `;
 
 const Home = ({ isMobile }) => {
@@ -37,27 +38,16 @@ const Home = ({ isMobile }) => {
       >
         <SwiperSlide>
           <Main>
-            <img
+            <video
               style={{
                 display: "flex",
                 alignItems: "center",
-                height: !isMobile && "86vh",
+                height: !isMobile && "88vh",
                 width: isMobile && "100%",
               }}
-              src="mainmotion.gif"
-              alt=""
-            />
-          </Main>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Main>
-            <video
-              style={{
-                height: !isMobile && "80vh",
-                width: isMobile && "100%",
-              }}
-              src="sample.mp4"
-              controls
+              src="main.mp4"
+              muted
+              autoPlay
               loop
             />
           </Main>
@@ -66,7 +56,22 @@ const Home = ({ isMobile }) => {
           <Main>
             <video
               style={{
-                height: !isMobile && "80vh",
+                height: !isMobile && "85vh",
+                width: isMobile && "100%",
+              }}
+              src="sample.mp4"
+              controls
+              muted
+              autoPlay
+              loop
+            />
+          </Main>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Main>
+            <video
+              style={{
+                height: !isMobile && "85vh",
                 width: isMobile && "100%",
               }}
               src="sample.mp4"
