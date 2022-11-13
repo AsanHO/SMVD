@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   z-index: 2;
   box-sizing: border-box;
   display: flex;
-  width: 100%;
+  width: 100vw;
   justify-content: space-between;
   align-items: center;
   padding: 2em 130px;
@@ -109,7 +109,7 @@ const HidBtns = styled.div`
   background-color: white;
   box-shadow: 0 2px 5px lightgray;
   display: block;
-  margin-left:5px;
+  margin-left: 5px;
 `;
 
 const dropbtn = () => {
@@ -199,7 +199,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                     marginBottom: "7%",
                   }}
                 >
-                  <Menu style={{marginRight:"13px"}}>전시소개</Menu>
+                  <Menu style={{ marginRight: "13px" }}>전시소개</Menu>
                 </Link>
                 <Link
                   id="dp-btn"
@@ -210,7 +210,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                     marginBottom: "7%",
                   }}
                 >
-                  <Menu style={{marginRight:"13px"}}>축사 & 교수진</Menu>
+                  <Menu style={{ marginRight: "13px" }}>축사 & 교수진</Menu>
                 </Link>
                 <Link
                   id="dp-btn"
@@ -221,7 +221,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                     marginBottom: "7%",
                   }}
                 >
-                  <Menu style={{marginRight:"13px"}}>학과소개</Menu>
+                  <Menu style={{ marginRight: "13px" }}>학과소개</Menu>
                 </Link>
               </HidBtns>
             </DropDown>

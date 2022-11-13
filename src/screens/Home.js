@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   background-color: white;
 `;
 const Main = styled.div`
+  width: 100vw;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -61,8 +62,6 @@ const Home = ({ isMobile }) => {
               }}
               src="sample.mp4"
               controls
-              muted
-              autoPlay
               loop
             />
           </Main>
