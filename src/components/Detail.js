@@ -122,16 +122,20 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
                 title="utube"
               />
             )}
-            <iframe
-              id="ytplayer"
-              type="text/html"
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/7v6NDhHlf0A"
-              frameborder="0"
-              title="utube"
+            {designer.mainUrl1 && (
+              <img src={designer.mainUrl1} style={{ width: "100%" }} alt="" />
+            )}
+            {designer.mainUrl2 && (
+              <img src={designer.mainUrl2} style={{ width: "100%" }} alt="" />
+            )}
+            {designer.mainUrl3 && (
+              <img src={designer.mainUrl3} style={{ width: "100%" }} alt="" />
+            )}
+            <img
+              src={designer.mainUrl4}
+              style={{ width: "100%", paddingBottom: "11vh" }}
+              alt=""
             />
-            <img src={designer.mainUrl} style={{ width: "100%" }} alt="" />
           </Wrapper>
           <Background onClick={goBack} />
         </Overlay>
@@ -150,17 +154,8 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
                 title="utube"
               />
             )}
-            <iframe
-              id="ytplayer"
-              type="text/html"
-              width="100%"
-              height="50%"
-              src="https://www.youtube.com/embed/7v6NDhHlf0A"
-              frameborder="0"
-              title="utube"
-            />
             <img
-              src={designer.mainUrl}
+              src={designer.mainUrl4}
               style={{ width: "100%", paddingBottom: "11vh" }}
               alt=""
             />

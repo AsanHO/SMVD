@@ -20,13 +20,19 @@ const Form = () => {
   const [email, setEmail] = useState("");
   const [utubeLink, setUtubeLink] = useState("");
   const [profileAttachment, setProfileAttachment] = useState("");
-  const [mainAttachment, setMainAttachment] = useState("");
+  const [mainAttachment1, setMainAttachment1] = useState("");
+  const [mainAttachment2, setMainAttachment2] = useState("");
+  const [mainAttachment3, setMainAttachment3] = useState("");
+  const [mainAttachment4, setMainAttachment4] = useState("");
   const [thumnailAttachment, setThumnailAttachment] = useState("");
   const onSubmit = async (event) => {
     event.preventDefault();
     //파일 경로 참조 만들기
     const profileRef = ref(storageService, `${studentId}/profile`);
-    const mainRef = ref(storageService, `${studentId}/main`);
+    const mainRef1 = ref(storageService, `${studentId}/main1`);
+    const mainRef2 = ref(storageService, `${studentId}/main2`);
+    const mainRef3 = ref(storageService, `${studentId}/main3`);
+    const mainRef4 = ref(storageService, `${studentId}/main4`);
     const thumnailRef = ref(storageService, `${studentId}/thumnail`);
     //storage 참조 경로로 파일 업로드 하기
     const profileResponse = await uploadString(
@@ -34,9 +40,39 @@ const Form = () => {
       profileAttachment,
       "data_url"
     );
-    const mainResponse = await uploadString(
-      mainRef,
-      mainAttachment,
+    if (mainAttachment1 !== "") {
+      var mainResponse1 = await uploadString(
+        mainRef1,
+        mainAttachment1,
+        "data_url"
+      );
+      var mainUrl1 = await getDownloadURL(mainResponse1.ref);
+    } else {
+      mainUrl1 = "";
+    }
+    if (mainAttachment2 !== "") {
+      var mainResponse2 = await uploadString(
+        mainRef2,
+        mainAttachment2,
+        "data_url"
+      );
+      var mainUrl2 = await getDownloadURL(mainResponse2.ref);
+    } else {
+      mainUrl2 = "";
+    }
+    if (mainAttachment3 !== "") {
+      var mainResponse3 = await uploadString(
+        mainRef3,
+        mainAttachment3,
+        "data_url"
+      );
+      var mainUrl3 = await getDownloadURL(mainResponse3.ref);
+    } else {
+      mainUrl3 = "";
+    }
+    const mainResponse4 = await uploadString(
+      mainRef4,
+      mainAttachment4,
       "data_url"
     );
     const thumnailResponse = await uploadString(
@@ -46,12 +82,15 @@ const Form = () => {
     );
     //storage 참조 경로에 있는 파일의 URL을 다운로드해서 profileUrl 변수에 넣어서 업데이트
     const profileUrl = await getDownloadURL(profileResponse.ref);
-    const mainUrl = await getDownloadURL(mainResponse.ref);
+    const mainUrl4 = await getDownloadURL(mainResponse4.ref);
     const thumnailUrl = await getDownloadURL(thumnailResponse.ref);
     //유튜브 비디오id 추출
-    let videoId = utubeLink.split("?v=");
-    videoId = videoId[1].split("&");
-    videoId = videoId[0];
+    let videoId = "";
+    if (utubeLink !== "") {
+      videoId = utubeLink.split("?v=");
+      videoId = videoId[1].split("&");
+      videoId = videoId[0];
+    }
     //트윗 오브젝트
     const nameObj = {
       name: name,
@@ -61,10 +100,13 @@ const Form = () => {
       email: email,
       utubeVideoId: videoId,
       profileUrl,
-      mainUrl,
+      mainUrl1,
+      mainUrl2,
+      mainUrl3,
+      mainUrl4,
       thumnailUrl,
     };
-    //트윗하기 누르면 nameObj 형태로 새로운 document 생성하여 nweets 콜렉션에 넣기
+    //형태로 새로운 document 생성하여 designers 콜렉션에 넣기
     await addDoc(collection(dbService, "designers"), nameObj);
     //state 비워서 form 비우기
     setname("");
@@ -74,7 +116,10 @@ const Form = () => {
     setEmail("");
     setUtubeLink("");
     setProfileAttachment("");
-    setMainAttachment("");
+    setMainAttachment1("");
+    setMainAttachment2("");
+    setMainAttachment3("");
+    setMainAttachment4("");
     setThumnailAttachment("");
   };
   const onChange = (event) => {
@@ -107,8 +152,14 @@ const Form = () => {
       } = finishedEvent;
       if (name === "profile") {
         setProfileAttachment(result);
-      } else if (name === "main") {
-        setMainAttachment(result);
+      } else if (name === "main1") {
+        setMainAttachment1(result);
+      } else if (name === "main2") {
+        setMainAttachment2(result);
+      } else if (name === "main3") {
+        setMainAttachment3(result);
+      } else if (name === "main4") {
+        setMainAttachment4(result);
       } else if (name === "thumnail") {
         setThumnailAttachment(result);
       }
@@ -147,7 +198,6 @@ const Form = () => {
         maxLength={20}
       />
       <input
-        required
         name="email"
         value={email}
         onChange={onChange}
@@ -155,7 +205,6 @@ const Form = () => {
         placeholder="이메일"
       />
       <input
-        required
         name="utubeLink"
         value={utubeLink}
         onChange={onChange}
@@ -193,19 +242,19 @@ const Form = () => {
               src={profileAttachment}
               style={{
                 backgroundImage: profileAttachment,
+                height: "300px",
               }}
             />
           </div>
         )}
       </div>
       <div>
-        <label htmlFor="main-file">
-          <p>메인이미지</p>
+        <label htmlFor="main1-file">
+          <p>메인이미지1</p>
         </label>
         <input
-          required
-          name="main"
-          id="main-file"
+          name="main1"
+          id="main1-file"
           type="file"
           accept="image/*"
           onChange={onFileChange}
@@ -213,12 +262,92 @@ const Form = () => {
             opacity: 0,
           }}
         />
-        {mainAttachment && (
+        {mainAttachment1 && (
           <div>
             <img
-              src={mainAttachment}
+              src={mainAttachment1}
               style={{
-                backgroundImage: mainAttachment,
+                backgroundImage: mainAttachment1,
+                height: "300px",
+              }}
+            />
+          </div>
+        )}
+      </div>
+      <div>
+        <label htmlFor="main2-file">
+          <p>메인이미지2</p>
+        </label>
+        <input
+          name="main2"
+          id="main2-file"
+          type="file"
+          accept="image/*"
+          onChange={onFileChange}
+          style={{
+            opacity: 0,
+          }}
+        />
+        {mainAttachment2 && (
+          <div>
+            <img
+              src={mainAttachment2}
+              style={{
+                backgroundImage: mainAttachment2,
+                height: "300px",
+              }}
+            />
+          </div>
+        )}
+      </div>
+      <div>
+        <label htmlFor="main3-file">
+          <p>메인이미지3</p>
+        </label>
+        <input
+          name="main3"
+          id="main3-file"
+          type="file"
+          accept="image/*"
+          onChange={onFileChange}
+          style={{
+            opacity: 0,
+          }}
+        />
+        {mainAttachment3 && (
+          <div>
+            <img
+              src={mainAttachment3}
+              style={{
+                backgroundImage: mainAttachment3,
+                height: "300px",
+              }}
+            />
+          </div>
+        )}
+      </div>
+      <div>
+        <label htmlFor="main4-file">
+          <p>메인이미지4</p>
+        </label>
+        <input
+          required
+          name="main4"
+          id="main4-file"
+          type="file"
+          accept="image/*"
+          onChange={onFileChange}
+          style={{
+            opacity: 0,
+          }}
+        />
+        {mainAttachment4 && (
+          <div>
+            <img
+              src={mainAttachment4}
+              style={{
+                backgroundImage: mainAttachment4,
+                height: "300px",
               }}
             />
           </div>
@@ -245,6 +374,7 @@ const Form = () => {
               src={thumnailAttachment}
               style={{
                 backgroundImage: thumnailAttachment,
+                height: "300px",
               }}
             />
           </div>

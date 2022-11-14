@@ -116,8 +116,7 @@ const Designer = ({ isLoggedIn }) => {
               >
                 <motion.img
                   style={{
-                    width: "140px",
-                    height: "140px",
+                    height: "200px",
                     borderRadius: "15px",
                   }}
                   src={designer.profileUrl}

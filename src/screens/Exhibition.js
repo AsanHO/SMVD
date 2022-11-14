@@ -79,7 +79,8 @@ const Thumnail = styled(motion.div)`
 const Thumnails = styled.div`
   display: grid;
   justify-content: center;
-  grid-template-columns: 250px 250px 250px 250px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
 `;
 
 const MThumnail = styled.div`
@@ -286,7 +287,7 @@ const Exhibition = () => {
                 onClick={() => onClickThumnail(designer)}
                 layoutId={designer.id}
               >
-                <motion.img src={designer.thumnailUrl} height="250px" alt="" />
+                <motion.img src={designer.thumnailUrl} height="200px" alt="" />
                 <motion.p>{designer.workName}</motion.p>
                 <motion.p>{designer.genre}</motion.p>
               </Thumnail>
