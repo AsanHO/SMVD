@@ -69,8 +69,7 @@ body {
 html{
   -webkit-overflow-scrolling: touch;
   -webkit-overflow-scrolling-x: touch;
-  overflow-x: hidden;
-  
+ 
 }
 a {
   text-decoration:none;

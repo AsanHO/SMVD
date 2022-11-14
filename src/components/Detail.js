@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
 const Overlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
