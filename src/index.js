@@ -64,12 +64,11 @@ body {
   font-family: Pretendard-Regular, sans-serif;
   color:black;
   line-height: 1.2;
-  
+  overflow-x: hidden;
 }
 html{
   -webkit-overflow-scrolling: touch;
   -webkit-overflow-scrolling-x: touch;
- 
 }
 a {
   text-decoration:none;
