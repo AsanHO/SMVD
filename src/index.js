@@ -65,17 +65,11 @@ body {
   color:black;
   line-height: 1.2;
   overflow-x: hidden;
+  background-color: salmon;
 }
 html{
   -webkit-overflow-scrolling: touch;
   -webkit-overflow-scrolling-x: touch;
-}
-body,html{
-  overflow-x: hidden;
-    /* Safari compatibility */
-    height: 100%;
-    width: 100%;
-    transform: translate3d(0,0,0);
 }
 a {
   text-decoration:none;
