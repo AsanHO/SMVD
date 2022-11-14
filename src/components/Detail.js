@@ -28,7 +28,6 @@ const Wrapper = styled(motion.div)`
   background-color: black;
   border-radius: 15px;
   background-color: black;
-  overflow-y: auto;
   border-radius: 15px;
   overflow: overlay;
   z-index: 1;
