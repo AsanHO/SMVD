@@ -35,10 +35,42 @@ const Menu = styled.div`
   margin: auto;
   text-decoration: none;
   text-align: center;
-  color: black;
+  color: #ddd;
   opacity: 100%;
   font-weight: bold;
 `;
+const setBlack = (event) => {
+    let dv = event.currentTarget;
+    dv.style.color = "black"
+    if (dv.id == "m1")
+    {
+      document.querySelector('#m2').style.color = "#ddd"
+      document.querySelector('#m3').style.color = "#ddd"
+    } else if (dv.id == "m2") {
+      document.querySelector('#m1').style.color = "#ddd"
+      document.querySelector('#m3').style.color = "#ddd"
+    } else if (dv.id == "m3") {
+      document.querySelector('#m1').style.color = "#ddd"
+      document.querySelector('#m2').style.color = "#ddd"
+    } else {
+      document.querySelector('#m1').style.color = "black"
+    }
+};
+const setGray = (event) => {
+  let dv = event.currentTarget;
+  dv.style.color = "#ddd"
+  if ((window.location.pathname == '/about1')
+  || (window.location.pathname == '/about2') || (window.location.pathname == '/about3'))
+    document.querySelector('#m1').style.color = "black"
+  if (window.location.pathname == '/designer')
+    document.querySelector('#m2').style.color = "black"
+  if (window.location.pathname == '/exhibition')
+    document.querySelector('#m3').style.color = "black"
+};
+const is_ab = window.location.pathname == '/about1' ? 1 : 0;
+const is_ex = window.location.pathname == '/exhibition' ? 1 : 0;
+const is_de = window.location.pathname == '/designer' ? 1 : 0;
+
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
   return isDesktop ? children : null;
@@ -109,7 +141,7 @@ const HidBtns = styled.div`
   background-color: white;
   box-shadow: 0 2px 5px lightgray;
   display: block;
-  margin-left: 5px;
+  margin-left: -50px;
 `;
 
 const dropbtn = () => {
@@ -164,7 +196,6 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
       setIsLoggedIn(false);
     });
   };
-
   return (
     <>
       <Desktop>
@@ -181,7 +212,8 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
             <DropDown>
               <DropBtn onMouseOver={dropbtn} onMouseOut={dropbtnoff}>
                 <Link to="/about1">
-                  <Menu>ABOUT</Menu>
+                  <Menu id = "m1"style = {{color: is_ab ? "black" : "#ddd"}}
+                  onMouseOver={setBlack} onMouseOut={setGray}>ABOUT</Menu>
                 </Link>
               </DropBtn>
               <HidBtns
@@ -195,41 +227,41 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                   to="/about1"
                   style={{
                     display: "flex",
-                    marginTop: "7%",
-                    marginBottom: "7%",
+                    marginTop: "14%",
+                    marginBottom: "14%",
                   }}
                 >
-                  <Menu style={{ marginRight: "13px" }}>전시소개</Menu>
+                  <Menu  id = "d1"onMouseOver={setBlack} onMouseOut={setGray}>전시소개</Menu>
                 </Link>
                 <Link
                   id="dp-btn"
                   to="/about2"
                   style={{
                     display: "flex",
-                    marginTop: "7%",
-                    marginBottom: "7%",
+                    marginTop: "14%",
+                    marginBottom: "14%",
                   }}
                 >
-                  <Menu style={{ marginRight: "13px" }}>축사 & 교수진</Menu>
+                  <Menu  id = "d2"onMouseOver={setBlack} onMouseOut={setGray}>축사 & 교수진</Menu>
                 </Link>
                 <Link
                   id="dp-btn"
                   to="/about3"
                   style={{
                     display: "flex",
-                    marginTop: "7%",
-                    marginBottom: "7%",
+                    marginTop: "14%",
+                    marginBottom: "14%",
                   }}
                 >
-                  <Menu style={{ marginRight: "13px" }}>학과소개</Menu>
+                  <Menu id = "d3"onMouseOver={setBlack} onMouseOut={setGray}>학과소개</Menu>
                 </Link>
               </HidBtns>
             </DropDown>
             <Link to="/designer">
-              <Menu>DESIGNERS</Menu>
+              <Menu id = "m2"style = {{color: is_de ? "black" : "#ddd"}} onMouseOver={setBlack} onMouseOut={setGray}>DESIGNERS</Menu>
             </Link>
             <Link to="/exhibition">
-              <Menu>EXHIBITION</Menu>
+              <Menu id = "m3"style = {{color: is_ex ? "black" : "#ddd"}} onMouseOver={setBlack} onMouseOut={setGray}>EXHIBITION</Menu>
             </Link>
           </Menus>
         </Wrapper>
