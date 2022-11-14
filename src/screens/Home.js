@@ -59,6 +59,7 @@ const Home = ({ isMobile }) => {
               style={{
                 height: !isMobile && "85vh",
                 width: isMobile && "100vw",
+                backgroundColor: "salmon",
               }}
               src="sample.mp4"
               controls

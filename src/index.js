@@ -24,6 +24,7 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -63,13 +64,14 @@ body {
   font-family: Pretendard-Regular, sans-serif;
   color:black;
   line-height: 1.2;
-  overflow: hidden;
-width: 100%;
--webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
-box-sizing: border-box;
+  
 }
-
+html{
+  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling-x: touch;
+  overflow-x: hidden;
+  
+}
 a {
   text-decoration:none;
   color:inherit;

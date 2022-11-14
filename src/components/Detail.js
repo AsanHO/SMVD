@@ -83,7 +83,7 @@ const MWrapper = styled.div`
   background-color: black;
   margin-top: 8vh;
   overflow-y: auto;
-  z-index:1;
+  z-index: 1;
 `;
 const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   console.log(designer);
@@ -159,7 +159,11 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
               frameborder="0"
               title="utube"
             />
-            <img src={designer.mainUrl} style={{ width: "100%" }} alt="" />
+            <img
+              src={designer.mainUrl}
+              style={{ width: "100%", paddingBottom: "11vh" }}
+              alt=""
+            />
           </MWrapper>
         </MOverlay>
       </Mobile>
