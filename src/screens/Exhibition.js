@@ -29,11 +29,12 @@ const MWrapper = styled.div`
 `;
 
 const Bar = styled.div`
+  margin-top: 7vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  margin-left: 10px;
+  margin-left: 100px;
   flex-wrap: wrap;
 `;
 
@@ -41,7 +42,6 @@ const Opt = styled.div`
   width: auto;
   position: relative;
   color: ${(props) => props.inputcolor || "#ddd"};
-
   padding: 6px 15px 6px 15px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -111,7 +111,6 @@ const MThumnails = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr 1fr;
-  padding: 0px 100px;
 `;
 
 const Exhibition = () => {
@@ -388,7 +387,12 @@ const Exhibition = () => {
                 key={designer.id}
                 onClick={() => onClickThumnail(designer)}
               >
-                <img src={designer.thumnailUrl} height="150px" alt="" />
+                <img
+                  src={designer.thumnailUrl}
+                  height="130px"
+                  style={{ borderRadius: "15px" }}
+                  alt=""
+                />
                 <p>{designer.workName}</p>
               </MThumnail>
             ))}

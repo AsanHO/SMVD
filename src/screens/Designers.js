@@ -38,7 +38,6 @@ const Profiles = styled.div`
 
 const MProfile = styled.div`
   margin: 0 auto;
-
   text-align: center;
 `;
 
@@ -117,15 +116,15 @@ const Designer = ({ isLoggedIn }) => {
                 onClick={() => onClick(designer)}
                 layoutId={designer.id}
               >
-                <motion.img
+                <img
                   style={{
                     height: "200px",
-                    borderRadius: "15px",
+                    borderRadius: "8px",
                   }}
                   src={designer.profileUrl}
                   alt=""
                 />
-                <motion.span>{designer.name}</motion.span>
+                <span>{designer.name}</span>
               </Profile>
             ))}
           </Profiles>
@@ -140,7 +139,7 @@ const Designer = ({ isLoggedIn }) => {
                 <img
                   style={{
                     height: "140px",
-                    borderRadius: "15px",
+                    borderRadius: "8px",
                   }}
                   src={designer.profileUrl}
                   alt=""

@@ -9,6 +9,7 @@ import Home from "../screens/Home";
 import Header from "./Header";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+import Footer from "./Footer";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -42,7 +43,7 @@ const AppRouter = ({ isLoggedIn, setIsLoggedIn }) => {
           <Route path="/" element={<Home isMobile={isMobile} />} />
         </Routes>
       </Wrapper>
-      <footer>2022 SMA provided</footer>
+      <Footer />
     </Router>
   );
 };
