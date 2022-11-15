@@ -23,18 +23,12 @@ const Wrapper = styled.div`
   right: 50%;
 `;
 
-const MWrapper = styled.div`
-  justify-content: center;
-  margin: 0 auto;
-`;
-
 const Bar = styled.div`
   margin-top: 7vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  margin-left: 100px;
   flex-wrap: wrap;
 `;
 
@@ -102,15 +96,18 @@ const Thumnails = styled.div`
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
 `;
-
-const MThumnail = styled.div`
-  text-align: center;
+const MWrapper = styled.div`
+  width: 100vw;
 `;
-
 const MThumnails = styled.div`
   display: grid;
   justify-content: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 150px);
+  width: 100%;
+`;
+const MThumnail = styled.div`
+  text-align: center;
+  margin-bottom: 10px;
 `;
 
 const Exhibition = () => {
@@ -389,7 +386,7 @@ const Exhibition = () => {
               >
                 <img
                   src={designer.thumnailUrl}
-                  height="130px"
+                  height="90px"
                   style={{ borderRadius: "15px" }}
                   alt=""
                 />
