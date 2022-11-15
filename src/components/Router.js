@@ -42,6 +42,7 @@ const AppRouter = ({ isLoggedIn, setIsLoggedIn }) => {
           <Route path="/" element={<Home isMobile={isMobile} />} />
         </Routes>
       </Wrapper>
+      <footer>2022 SMA provided</footer>
     </Router>
   );
 };

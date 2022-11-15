@@ -43,7 +43,7 @@ const Home = ({ isMobile }) => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                height: !isMobile && "88vh",
+                height: !isMobile && "89vh",
                 width: isMobile && "100vw",
               }}
               src="main.mp4"
@@ -57,7 +57,7 @@ const Home = ({ isMobile }) => {
           <Main>
             <video
               style={{
-                height: !isMobile && "85vh",
+                height: !isMobile && "89vh",
                 width: isMobile && "100vw",
                 backgroundColor: "salmon",
               }}
@@ -71,7 +71,7 @@ const Home = ({ isMobile }) => {
           <Main>
             <video
               style={{
-                height: !isMobile && "85vh",
+                height: !isMobile && "89vh",
                 width: isMobile && "100vw",
               }}
               src="sample.mp4"

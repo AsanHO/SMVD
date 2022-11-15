@@ -65,10 +65,12 @@ body {
   color:black;
   line-height: 1.2;
   overflow-x: hidden;
+
 }
 html{
   -webkit-overflow-scrolling: touch;
   -webkit-overflow-scrolling-x: touch;
+  width: 100vw;
 }
 a {
   text-decoration:none;

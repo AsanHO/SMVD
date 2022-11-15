@@ -21,7 +21,6 @@ const Wrapper = styled.div`
   width: 100%;
   left: 50%;
   right: 50%;
-  margin: 0 auto;
 `;
 
 const MWrapper = styled.div`
@@ -74,17 +73,37 @@ const Opt = styled.div`
 const Thumnail = styled(motion.div)`
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  border-radius: 15px;
+  height: 200px;
+  margin-bottom: 30px;
+  text-align: left;
+`;
+
+const ThumnailHover = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
+  text-align: right;
+  padding: 20px;
+  border-radius: 15px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+  transition: all 0.3s ease-in-out;
 `;
 
 const Thumnails = styled.div`
+  width: 90%;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
-  gap: 17px;
 `;
 
 const MThumnail = styled.div`
-  margin: 0 auto;
   text-align: center;
 `;
 
@@ -92,6 +111,7 @@ const MThumnails = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr 1fr;
+  padding: 0px 100px;
 `;
 
 const Exhibition = () => {
@@ -287,9 +307,17 @@ const Exhibition = () => {
                 onClick={() => onClickThumnail(designer)}
                 layoutId={designer.id}
               >
-                <motion.img src={designer.thumnailUrl} height="200px" alt="" />
-                <motion.p>{designer.workName}</motion.p>
-                <motion.p>{designer.genre}</motion.p>
+                <ThumnailHover>
+                  <span>{designer.name}</span>
+                </ThumnailHover>
+                <motion.img
+                  src={designer.thumnailUrl}
+                  height="200px"
+                  width="300px"
+                  style={{ borderRadius: "15px" }}
+                  alt=""
+                />
+                <p>{designer.workName}</p>
               </Thumnail>
             ))}
           </Thumnails>
@@ -360,9 +388,8 @@ const Exhibition = () => {
                 key={designer.id}
                 onClick={() => onClickThumnail(designer)}
               >
-                <img src={designer.thumnailUrl} height="200px" alt="" />
+                <img src={designer.thumnailUrl} height="150px" alt="" />
                 <p>{designer.workName}</p>
-                <p>{designer.genre}</p>
               </MThumnail>
             ))}
           </MThumnails>
