@@ -65,7 +65,6 @@ body {
   color:black;
   line-height: 1.2;
   overflow-x: hidden;
-  background-color: salmon;
 }
 html{
   -webkit-overflow-scrolling: touch;

@@ -87,9 +87,8 @@ const Form = () => {
     //유튜브 비디오id 추출
     let videoId = "";
     if (utubeLink !== "") {
-      videoId = utubeLink.split("?v=");
-      videoId = videoId[1].split("&");
-      videoId = videoId[0];
+      videoId = utubeLink.split("be/");
+      videoId = videoId[1];
     }
     //트윗 오브젝트
     const nameObj = {
