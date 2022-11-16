@@ -43,7 +43,7 @@ const Home = ({ isMobile }) => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                height: !isMobile && "88vh",
+                height: !isMobile && "89vh",
                 width: isMobile && "100vw",
               }}
               src="main.mp4"
@@ -55,28 +55,29 @@ const Home = ({ isMobile }) => {
         </SwiperSlide>
         <SwiperSlide>
           <Main>
-            <video
+            <iframe
               style={{
-                height: !isMobile && "85vh",
-                width: isMobile && "100vw",
-                backgroundColor: "salmon",
+                height: !isMobile && "89vh",
+                width: isMobile ? "100vw" : "85vw",
               }}
-              src="sample.mp4"
-              controls
-              loop
+              id="ytplayer"
+              type="text/html"
+              src={`https://www.youtube.com/embed/JexmUsUEFYE`}
+              title="utube"
             />
           </Main>
         </SwiperSlide>
         <SwiperSlide>
           <Main>
-            <video
+            <iframe
               style={{
-                height: !isMobile && "85vh",
-                width: isMobile && "100vw",
+                height: !isMobile && "89vh",
+                width: isMobile ? "100vw" : "85vw",
               }}
-              src="sample.mp4"
-              controls
-              loop
+              id="ytplayer"
+              type="text/html"
+              src={`https://www.youtube.com/embed/Bwf9f5dwm1Q`}
+              title="utube"
             />
           </Main>
         </SwiperSlide>

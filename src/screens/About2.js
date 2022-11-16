@@ -161,9 +161,9 @@ const About2 = () => {
     <Mobile>
     <Container>
       <Category>
-        <Link to="/about1" id="category"  style={{color:"darkgray", marginRight:"5%"}}>전시소개</Link>
-        <Link to="/about2" id="category" style={{marginRight:"5%"}}>축사 & 교수진</Link>
-        <Link to="/about3" id="category" style={{color:"darkgray"}}>학과소개</Link>  
+        <Link to="/about1" id="category"  style={{color:"darkgray", marginRight:"5%", fontSize:"10pt"}}>전시소개</Link>
+        <Link to="/about2" id="category" style={{marginRight:"5%", fontSize:"10pt"}}>축사 & 교수진</Link>
+        <Link to="/about3" id="category" style={{color:"darkgray", fontSize:"10pt"}}>학과소개</Link>  
       </Category>
       <Box>
         <div id="title">

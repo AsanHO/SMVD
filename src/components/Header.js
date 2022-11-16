@@ -40,36 +40,38 @@ const Menu = styled.div`
   font-weight: bold;
 `;
 const setBlack = (event) => {
-    let dv = event.currentTarget;
-    dv.style.color = "black"
-    if (dv.id == "m1")
-    {
-      document.querySelector('#m2').style.color = "#ddd"
-      document.querySelector('#m3').style.color = "#ddd"
-    } else if (dv.id == "m2") {
-      document.querySelector('#m1').style.color = "#ddd"
-      document.querySelector('#m3').style.color = "#ddd"
-    } else if (dv.id == "m3") {
-      document.querySelector('#m1').style.color = "#ddd"
-      document.querySelector('#m2').style.color = "#ddd"
-    } else {
-      document.querySelector('#m1').style.color = "black"
-    }
+  let dv = event.currentTarget;
+  dv.style.color = "black";
+  if (dv.id == "m1") {
+    document.querySelector("#m2").style.color = "#ddd";
+    document.querySelector("#m3").style.color = "#ddd";
+  } else if (dv.id == "m2") {
+    document.querySelector("#m1").style.color = "#ddd";
+    document.querySelector("#m3").style.color = "#ddd";
+  } else if (dv.id == "m3") {
+    document.querySelector("#m1").style.color = "#ddd";
+    document.querySelector("#m2").style.color = "#ddd";
+  } else {
+    document.querySelector("#m1").style.color = "black";
+  }
 };
 const setGray = (event) => {
   let dv = event.currentTarget;
-  dv.style.color = "#ddd"
-  if ((window.location.pathname == '/about1')
-  || (window.location.pathname == '/about2') || (window.location.pathname == '/about3'))
-    document.querySelector('#m1').style.color = "black"
-  if (window.location.pathname == '/designer')
-    document.querySelector('#m2').style.color = "black"
-  if (window.location.pathname == '/exhibition')
-    document.querySelector('#m3').style.color = "black"
+  dv.style.color = "#ddd";
+  if (
+    window.location.pathname == "/about1" ||
+    window.location.pathname == "/about2" ||
+    window.location.pathname == "/about3"
+  )
+    document.querySelector("#m1").style.color = "black";
+  if (window.location.pathname == "/designer")
+    document.querySelector("#m2").style.color = "black";
+  if (window.location.pathname == "/exhibition")
+    document.querySelector("#m3").style.color = "black";
 };
-const is_ab = window.location.pathname == '/about1' ? 1 : 0;
-const is_ex = window.location.pathname == '/exhibition' ? 1 : 0;
-const is_de = window.location.pathname == '/designer' ? 1 : 0;
+const is_ab = window.location.pathname == "/about1" ? 1 : 0;
+const is_ex = window.location.pathname == "/exhibition" ? 1 : 0;
+const is_de = window.location.pathname == "/designer" ? 1 : 0;
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -212,8 +214,14 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
             <DropDown>
               <DropBtn onMouseOver={dropbtn} onMouseOut={dropbtnoff}>
                 <Link to="/about1">
-                  <Menu id = "m1"style = {{color: is_ab ? "black" : "#ddd"}}
-                  onMouseOver={setBlack} onMouseOut={setGray}>ABOUT</Menu>
+                  <Menu
+                    id="m1"
+                    style={{ color: is_ab ? "black" : "#ddd" }}
+                    onMouseOver={setBlack}
+                    onMouseOut={setGray}
+                  >
+                    ABOUT
+                  </Menu>
                 </Link>
               </DropBtn>
               <HidBtns
@@ -231,7 +239,9 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                     marginBottom: "14%",
                   }}
                 >
-                  <Menu  id = "d1"onMouseOver={setBlack} onMouseOut={setGray}>전시소개</Menu>
+                  <Menu id="d1" onMouseOver={setBlack} onMouseOut={setGray}>
+                    전시소개
+                  </Menu>
                 </Link>
                 <Link
                   id="dp-btn"
@@ -242,7 +252,9 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                     marginBottom: "14%",
                   }}
                 >
-                  <Menu  id = "d2"onMouseOver={setBlack} onMouseOut={setGray}>축사 & 교수진</Menu>
+                  <Menu id="d2" onMouseOver={setBlack} onMouseOut={setGray}>
+                    축사 & 교수진
+                  </Menu>
                 </Link>
                 <Link
                   id="dp-btn"
@@ -253,15 +265,31 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                     marginBottom: "14%",
                   }}
                 >
-                  <Menu id = "d3"onMouseOver={setBlack} onMouseOut={setGray}>학과소개</Menu>
+                  <Menu id="d3" onMouseOver={setBlack} onMouseOut={setGray}>
+                    학과소개
+                  </Menu>
                 </Link>
               </HidBtns>
             </DropDown>
             <Link to="/designer">
-              <Menu id = "m2"style = {{color: is_de ? "black" : "#ddd"}} onMouseOver={setBlack} onMouseOut={setGray}>DESIGNERS</Menu>
+              <Menu
+                id="m2"
+                style={{ color: is_de ? "black" : "#ddd" }}
+                onMouseOver={setBlack}
+                onMouseOut={setGray}
+              >
+                DESIGNERS
+              </Menu>
             </Link>
             <Link to="/exhibition">
-              <Menu id = "m3"style = {{color: is_ex ? "black" : "#ddd"}} onMouseOver={setBlack} onMouseOut={setGray}>EXHIBITION</Menu>
+              <Menu
+                id="m3"
+                style={{ color: is_ex ? "black" : "#ddd" }}
+                onMouseOver={setBlack}
+                onMouseOut={setGray}
+              >
+                EXHIBITION
+              </Menu>
             </Link>
           </Menus>
         </Wrapper>
@@ -270,7 +298,6 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
         <MWrapper className={hide && "hide"}>
           <Link to="/">
             <Logo src="logo.png" style={{ width: "50%" }} />
-            <span>1040dev</span>
           </Link>
           <svg
             style={{ width: "30px" }}

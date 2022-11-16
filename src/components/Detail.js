@@ -66,20 +66,20 @@ const Mobile = ({ children }) => {
   return isMobile ? children : null;
 };
 const MOverlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: black;
   display: flex;
   justify-content: center;
-  padding: 2% 0;
+  z-index: 3;
 `;
 const MWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: black;
-  margin-top: 8vh;
+
   overflow-y: auto;
   z-index: 1;
 `;
@@ -93,9 +93,9 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   useEffect(() => {
     document.body.style = `
     overflow: hidden;
-    z-index:10;
+    z-index: 10;
     `;
-    return () => (document.body.style = `overflow: auto`);
+    return () => (document.body.style = `overflow-y: hidden`);
   }, []);
 
   return (
@@ -146,17 +146,22 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
                 id="ytplayer"
                 type="text/html"
                 width="100%"
-                height="100%"
+                height="50%"
                 src={`https://www.youtube.com/embed/${designer.utubeVideoId}`}
                 frameborder="0"
                 title="utube"
               />
             )}
-            <img
-              src={designer.mainUrl4}
-              style={{ width: "100%", paddingBottom: "11vh" }}
-              alt=""
-            />
+            {designer.mainUrl1 && (
+              <img src={designer.mainUrl1} style={{ width: "100%" }} alt="" />
+            )}
+            {designer.mainUrl2 && (
+              <img src={designer.mainUrl2} style={{ width: "100%" }} alt="" />
+            )}
+            {designer.mainUrl3 && (
+              <img src={designer.mainUrl3} style={{ width: "100%" }} alt="" />
+            )}
+            <img src={designer.mainUrl4} style={{ width: "100%" }} alt="" />
           </MWrapper>
         </MOverlay>
       </Mobile>
