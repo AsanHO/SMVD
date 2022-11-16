@@ -60,9 +60,9 @@ table {
   box-sizing: border-box;
 }
 body {
-  font-weight: 300;
+  font-weight: 800;
   font-family: Pretendard-Regular, sans-serif;
-  color:black;
+  color:#2E2F2D;
   line-height: 1.2;
   overflow-x: hidden;
 
