@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
 const Overlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
@@ -94,9 +94,9 @@ const Detail = ({ designer, setSelected, layoutId, isLoggedIn }) => {
   useEffect(() => {
     document.body.style = `
     overflow: hidden;
-    z-index:10;
+    z-index: 10;
     `;
-    return () => (document.body.style = `overflow: auto`);
+    return () => (document.body.style = `overflow-y: hidden`);
   }, []);
 
   return (
