@@ -60,17 +60,17 @@ table {
   box-sizing: border-box;
 }
 body {
-  font-weight: 300;
+  font-weight: 800;
   font-family: Pretendard-Regular, sans-serif;
-  color:black;
+  color:#2E2F2D;
   line-height: 1.2;
-  
+  overflow-x: hidden;
+
 }
 html{
   -webkit-overflow-scrolling: touch;
   -webkit-overflow-scrolling-x: touch;
-  overflow-x: hidden;
-  
+  width: 100vw;
 }
 a {
   text-decoration:none;

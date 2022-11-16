@@ -21,20 +21,14 @@ const Wrapper = styled.div`
   width: 100%;
   left: 50%;
   right: 50%;
-  margin: 0 auto;
-`;
-
-const MWrapper = styled.div`
-  justify-content: center;
-  margin: 0 auto;
 `;
 
 const Bar = styled.div`
+  margin-top: 7vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  margin-left: 10px;
   flex-wrap: wrap;
 `;
 
@@ -42,7 +36,6 @@ const Opt = styled.div`
   width: auto;
   position: relative;
   color: ${(props) => props.inputcolor || "#ddd"};
-
   padding: 6px 15px 6px 15px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -74,24 +67,47 @@ const Opt = styled.div`
 const Thumnail = styled(motion.div)`
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  border-radius: 15px;
+  height: 200px;
+  margin-bottom: 30px;
+  text-align: left;
+`;
+
+const ThumnailHover = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
+  text-align: right;
+  padding: 20px;
+  border-radius: 15px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+  transition: all 0.3s ease-in-out;
 `;
 
 const Thumnails = styled.div`
+  width: 90%;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
-  gap: 17px;
 `;
-
-const MThumnail = styled.div`
-  margin: 0 auto;
-  text-align: center;
+const MWrapper = styled.div`
+  width: 100vw;
 `;
-
 const MThumnails = styled.div`
   display: grid;
   justify-content: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 150px);
+  width: 100%;
+`;
+const MThumnail = styled.div`
+  text-align: center;
+  margin-bottom: 10px;
 `;
 
 const Exhibition = () => {
@@ -287,9 +303,17 @@ const Exhibition = () => {
                 onClick={() => onClickThumnail(designer)}
                 layoutId={designer.id}
               >
-                <motion.img src={designer.thumnailUrl} height="200px" alt="" />
-                <motion.p>{designer.workName}</motion.p>
-                <motion.p>{designer.genre}</motion.p>
+                <ThumnailHover>
+                  <span>{designer.name}</span>
+                </ThumnailHover>
+                <motion.img
+                  src={designer.thumnailUrl}
+                  height="200px"
+                  width="300px"
+                  style={{ borderRadius: "15px" }}
+                  alt=""
+                />
+                <p>{designer.workName}</p>
               </Thumnail>
             ))}
           </Thumnails>
@@ -360,9 +384,13 @@ const Exhibition = () => {
                 key={designer.id}
                 onClick={() => onClickThumnail(designer)}
               >
-                <img src={designer.thumnailUrl} height="200px" alt="" />
+                <img
+                  src={designer.thumnailUrl}
+                  height="90px"
+                  style={{ borderRadius: "15px" }}
+                  alt=""
+                />
                 <p>{designer.workName}</p>
-                <p>{designer.genre}</p>
               </MThumnail>
             ))}
           </MThumnails>

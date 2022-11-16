@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   right: 50%;
   margin: 0 auto;
   justify-content: center;
+  margin-top: 11vh;
 `;
 
 const MWrapper = styled.div`
@@ -26,6 +27,7 @@ const Profile = styled(motion.div)`
   margin-right: 48px;
   width: 136px;
   text-align: center;
+  margin-bottom: 5vh;
 `;
 
 const Profiles = styled.div`
@@ -36,14 +38,14 @@ const Profiles = styled.div`
 
 const MProfile = styled.div`
   margin: 0 auto;
-  width: 140px;
   text-align: center;
 `;
 
 const MProfiles = styled.div`
+  padding: 0px 30px;
   display: grid;
   justify-content: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
 `;
 
 const Desktop = ({ children }) => {
@@ -114,15 +116,15 @@ const Designer = ({ isLoggedIn }) => {
                 onClick={() => onClick(designer)}
                 layoutId={designer.id}
               >
-                <motion.img
+                <img
                   style={{
                     height: "200px",
-                    borderRadius: "15px",
+                    borderRadius: "8px",
                   }}
                   src={designer.profileUrl}
                   alt=""
                 />
-                <motion.span>{designer.name}</motion.span>
+                <span>{designer.name}</span>
               </Profile>
             ))}
           </Profiles>
@@ -136,9 +138,8 @@ const Designer = ({ isLoggedIn }) => {
               <MProfile key={designer.id} onClick={() => onClick(designer)}>
                 <img
                   style={{
-                    width: "140px",
                     height: "140px",
-                    borderRadius: "15px",
+                    borderRadius: "8px",
                   }}
                   src={designer.profileUrl}
                   alt=""
