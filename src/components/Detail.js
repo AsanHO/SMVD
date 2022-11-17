@@ -38,7 +38,6 @@ const Wrapper = styled(motion.div)`
     background-color: lightgray;
     border-radius: 50px;
   }
-
   &::-webkit-scrollbar-track {
     background: none;
   }
