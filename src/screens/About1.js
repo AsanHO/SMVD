@@ -13,7 +13,7 @@ const Mobile = ({ children }) => {
 };
 
 const Category = styled.div`
-  width: 50%;
+  width: 60%;
   margin-left: 10%;
 `;
 const Container = styled.div`

@@ -19,7 +19,7 @@ const Container = styled.div`
 `
 
 const Category = styled.div`
-  width: 50%;
+  width: 60%;
   margin-left: 10%;
 `
 
